@@ -23,7 +23,8 @@ int main() {
     //superLoop
     while (1){
         LEDM_Manage();
-     //   WDGM_MainFunction();
+        WDGM_MainFunction();
+        WDGDrv_IsrNotification();
         __delay_ms(10);
     }
     

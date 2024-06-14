@@ -4954,8 +4954,6 @@ void GPIO_Write(unsigned char PinId, unsigned char PinData);
 # 1 "GPIO/WDGM.h" 1
 # 11 "GPIO/WDGM.h"
 typedef enum {OK = 0, NOK = 1}WDGM_StatusType;
-extern volatile int Calls;
-
 void WDGM_Init(void);
 void WDGM_MainFunction(void);
 WDGM_StatusType WDGM_PovideSuppervisionStatus(void);
@@ -4992,7 +4990,7 @@ void LEDM_Manage(void){
         ledCounter=0;
     }
 
-
+    WDGM_AlivenessIndication();
 
 
 }

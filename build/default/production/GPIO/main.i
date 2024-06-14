@@ -5107,6 +5107,8 @@ void GPIO_Write(unsigned char PinId, unsigned char PinData);
 # 1 "GPIO/WDGM.h" 1
 # 11 "GPIO/WDGM.h"
 typedef enum {OK = 0, NOK = 1}WDGM_StatusType;
+extern volatile int Calls;
+
 void WDGM_Init(void);
 void WDGM_MainFunction(void);
 WDGM_StatusType WDGM_PovideSuppervisionStatus(void);
@@ -5114,7 +5116,7 @@ void WDGM_AlivenessIndication(void);
 # 13 "GPIO/LEDM.h" 2
 
 # 1 "GPIO/WDGDRV.h" 1
-# 14 "GPIO/WDGDRV.h"
+# 15 "GPIO/WDGDRV.h"
 void WDGDrv_Init(void);
 void WDGDrv_IsrNotification(void);
 # 14 "GPIO/LEDM.h" 2
@@ -5140,7 +5142,8 @@ int main() {
 
     while (1){
         LEDM_Manage();
-
+        WDGM_MainFunction();
+        WDGDrv_IsrNotification();
         _delay((unsigned long)((10)*(8000000/4000.0)));
     }
 

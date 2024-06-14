@@ -6,15 +6,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 "15 GPIO/WDGDRV.h
 [; ;GPIO/WDGDRV.h: 15: void WDGDrv_Init(void);
 [v _WDGDrv_Init `(v ~T0 @X0 0 ef ]
-"14 GPIO/WDGM.h
-[; ;GPIO/WDGM.h: 14: void WDGM_Init(void);
+"12 GPIO/WDGM.h
+[; ;GPIO/WDGM.h: 12: void WDGM_Init(void);
 [v _WDGM_Init `(v ~T0 @X0 0 ef ]
 "18 GPIO/LEDM.h
 [; ;GPIO/LEDM.h: 18: void LEDM_Manage(void);
 [v _LEDM_Manage `(v ~T0 @X0 0 ef ]
-"15 GPIO/WDGM.h
-[; ;GPIO/WDGM.h: 15: void WDGM_MainFunction(void);
-[v _WDGM_MainFunction `(v ~T0 @X0 0 ef ]
 "16 GPIO/WDGDRV.h
 [; ;GPIO/WDGDRV.h: 16: void WDGDrv_IsrNotification(void);
 [v _WDGDrv_IsrNotification `(v ~T0 @X0 0 ef ]
@@ -486,9 +483,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "25
 [; ;GPIO/main.c: 25:         LEDM_Manage();
 [e ( _LEDM_Manage ..  ]
-"26
-[; ;GPIO/main.c: 26:         WDGM_MainFunction();
-[e ( _WDGM_MainFunction ..  ]
 "27
 [; ;GPIO/main.c: 27:         WDGDrv_IsrNotification();
 [e ( _WDGDrv_IsrNotification ..  ]

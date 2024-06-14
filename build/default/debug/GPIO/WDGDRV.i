@@ -1,4 +1,4 @@
-# 1 "GPIO/LEDM.c"
+# 1 "GPIO/WDGDRV.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,11 +6,9 @@
 # 1 "<built-in>" 2
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.46\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "GPIO/LEDM.c" 2
-# 1 "GPIO/LEDM.h" 1
-# 12 "GPIO/LEDM.h"
-# 1 "GPIO/GPIO.h" 1
-# 11 "GPIO/GPIO.h"
+# 1 "GPIO/WDGDRV.c" 2
+# 1 "GPIO/WDGDRV.h" 1
+# 10 "GPIO/WDGDRV.h"
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.46\\pic\\include\\xc.h" 1 3
 # 18 "C:\\Program Files\\Microchip\\xc8\\v2.46\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -4942,56 +4940,62 @@ __attribute__((__unsupported__("The " "Write_b_eep" " routine is no longer suppo
 unsigned char __t1rd16on(void);
 unsigned char __t3rd16on(void);
 # 33 "C:\\Program Files\\Microchip\\xc8\\v2.46\\pic\\include\\xc.h" 2 3
-# 11 "GPIO/GPIO.h" 2
+# 10 "GPIO/WDGDRV.h" 2
 
 
-void GPIO_Init(void);
-
-
-void GPIO_Write(unsigned char PinId, unsigned char PinData);
-# 12 "GPIO/LEDM.h" 2
 
 # 1 "GPIO/WDGM.h" 1
 # 11 "GPIO/WDGM.h"
 typedef enum {OK = 0, NOK = 1}WDGM_StatusType;
-extern volatile int Calls;
-
 void WDGM_Init(void);
 void WDGM_MainFunction(void);
 WDGM_StatusType WDGM_PovideSuppervisionStatus(void);
 void WDGM_AlivenessIndication(void);
-# 13 "GPIO/LEDM.h" 2
+# 13 "GPIO/WDGDRV.h" 2
 
-# 1 "GPIO/WDGDRV.h" 1
-# 15 "GPIO/WDGDRV.h"
+
 void WDGDrv_Init(void);
 void WDGDrv_IsrNotification(void);
-# 14 "GPIO/LEDM.h" 2
+# 1 "GPIO/WDGDRV.c" 2
 
 
+#pragma config FOSC = HS
 
-void LEDM_Init(void);
-void LEDM_Manage(void);
-# 1 "GPIO/LEDM.c" 2
+#pragma config WDTPS = 32768
+void WDGDrv_Init(void){
+# 20 "GPIO/WDGDRV.c"
+    WDTCONbits.SWDTEN = 1;
+    TRISDbits.TRISD4 = 0;
 
-
-static volatile int ledstate=0;
-static volatile int ledCounter=0;
-void LEDM_Init(void){
-    GPIO_Init();
 
 }
 
 
-void LEDM_Manage(void){
-    ledCounter=ledCounter+10;
 
-    if (ledCounter>500){
-        ledstate=!ledstate;
-        GPIO_Write(5,ledstate);
-        ledCounter=0;
+void WDGDrv_IsrNotification(void){
+
+
+
+
+
+
+    if (WDGM_PovideSuppervisionStatus()== OK){
+
+        LATDbits.LATD4 = 0;
+
+        __asm(" clrwdt");
+
+
     }
+    else{
 
+        LATDbits.LATD4 = 1;
+
+
+
+
+
+    }
 
 
 

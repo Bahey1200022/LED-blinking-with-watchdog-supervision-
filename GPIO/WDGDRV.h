@@ -8,6 +8,7 @@
 #ifndef WDGDRV_H
 #define	WDGDRV_H
 #include <xc.h> // Include processor files - each processor file is guarded.
+#define _XTAL_FREQ 8000000  // Define the clock frequency for delay functions
 
 #include "WDGM.h"
 

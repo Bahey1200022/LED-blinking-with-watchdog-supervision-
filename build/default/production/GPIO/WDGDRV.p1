@@ -14,13 +14,46 @@ Version 4.0 HI-TECH Software Intermediate Code
 "6170
 [; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-K_DFP/1.13.292/xc8\pic\include\proc\pic18f46k20.h: 6170: extern volatile WDTCONbits_t WDTCONbits __attribute__((address(0xFD1)));
 [v _WDTCONbits `VS267 ~T0 @X0 0 e@4049 ]
-"34 GPIO/WDGDRV.c
-[; ;GPIO/WDGDRV.c: 34:     if (WDGM_PovideSuppervisionStatus()==OK){
+"2709
+[; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-K_DFP/1.13.292/xc8\pic\include\proc\pic18f46k20.h: 2709:     struct {
+[s S102 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S102 . TRISD0 TRISD1 TRISD2 TRISD3 TRISD4 TRISD5 TRISD6 TRISD7 ]
+"2719
+[; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-K_DFP/1.13.292/xc8\pic\include\proc\pic18f46k20.h: 2719:     struct {
+[s S103 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S103 . RD0 RD1 RD2 RD3 RD4 RD5 RD6 RD7 ]
+"2708
+[; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-K_DFP/1.13.292/xc8\pic\include\proc\pic18f46k20.h: 2708: typedef union {
+[u S101 `S102 1 `S103 1 ]
+[n S101 . . . ]
+"2730
+[; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-K_DFP/1.13.292/xc8\pic\include\proc\pic18f46k20.h: 2730: extern volatile TRISDbits_t TRISDbits __attribute__((address(0xF95)));
+[v _TRISDbits `VS101 ~T0 @X0 0 e@3989 ]
+"39 GPIO/WDGDRV.c
+[; ;GPIO/WDGDRV.c: 39:     if (WDGM_PovideSuppervisionStatus()== OK && (Calls == isr) ){
 [c E2735 0 1 .. ]
 [n E2735 . OK NOK  ]
-"14 GPIO/WDGM.h
-[; ;GPIO/WDGM.h: 14: WDGM_StatusType WDGM_PovideSuppervisionStatus(void);
+"16 GPIO/WDGM.h
+[; ;GPIO/WDGM.h: 16: WDGM_StatusType WDGM_PovideSuppervisionStatus(void);
 [v _WDGM_PovideSuppervisionStatus `(E2735 ~T0 @X0 0 ef ]
+"12
+[; ;GPIO/WDGM.h: 12: extern volatile int Calls;
+[v _Calls `Vi ~T0 @X0 0 e ]
+"1874 C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-K_DFP/1.13.292/xc8\pic\include\proc\pic18f46k20.h
+[; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-K_DFP/1.13.292/xc8\pic\include\proc\pic18f46k20.h: 1874:     struct {
+[s S78 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S78 . LATD0 LATD1 LATD2 LATD3 LATD4 LATD5 LATD6 LATD7 ]
+"1884
+[; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-K_DFP/1.13.292/xc8\pic\include\proc\pic18f46k20.h: 1884:     struct {
+[s S79 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S79 . LD0 LD1 LD2 LD3 LD4 LD5 LD6 LD7 ]
+"1873
+[; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-K_DFP/1.13.292/xc8\pic\include\proc\pic18f46k20.h: 1873: typedef union {
+[u S77 `S78 1 `S79 1 ]
+[n S77 . . . ]
+"1895
+[; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-K_DFP/1.13.292/xc8\pic\include\proc\pic18f46k20.h: 1895: extern volatile LATDbits_t LATDbits __attribute__((address(0xF8C)));
+[v _LATDbits `VS77 ~T0 @X0 0 e@3980 ]
 "54 C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-K_DFP/1.13.292/xc8\pic\include\proc\pic18f46k20.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-K_DFP/1.13.292/xc8\pic\include\proc\pic18f46k20.h: 54: __asm("SSPMSK equ 0F77h");
 [; <" SSPMSK equ 0F77h ;# ">
@@ -467,43 +500,65 @@ Version 4.0 HI-TECH Software Intermediate Code
 "5
 [p x WDTPS  =  32768  ]
 "6
+[v _isr `Vi ~T0 @X0 1 s ]
+[i _isr
+-> 0 `i
+]
+"7
+[v _notifications `Vi ~T0 @X0 1 s ]
+[i _notifications
+-> 0 `i
+]
+"8
 [v _WDGDrv_Init `(v ~T0 @X0 1 ef ]
 {
 [e :U _WDGDrv_Init ]
 [f ]
-"20
-[; ;GPIO/WDGDRV.c: 20:     WDTCONbits.SWDTEN = 1;
+"22
+[; ;GPIO/WDGDRV.c: 22:     WDTCONbits.SWDTEN = 1;
 [e = . . _WDTCONbits 0 0 -> -> 1 `i `uc ]
 "23
-[; ;GPIO/WDGDRV.c: 23: }
+[; ;GPIO/WDGDRV.c: 23:     TRISDbits.TRISD4 = 0;
+[e = . . _TRISDbits 0 4 -> -> 0 `i `uc ]
+"26
+[; ;GPIO/WDGDRV.c: 26: }
 [e :UE 303 ]
 }
-"27
-[; ;GPIO/WDGDRV.c: 27: void WDGDrv_IsrNotification(void){
+"30
+[; ;GPIO/WDGDRV.c: 30: void WDGDrv_IsrNotification(void){
 [v _WDGDrv_IsrNotification `(v ~T0 @X0 1 ef ]
 {
 [e :U _WDGDrv_IsrNotification ]
 [f ]
-"34
-[; ;GPIO/WDGDRV.c: 34:     if (WDGM_PovideSuppervisionStatus()==OK){
-[e $ ! == -> ( _WDGM_PovideSuppervisionStatus ..  `ui -> . `E2735 0 `ui 305  ]
-{
 "36
-[; ;GPIO/WDGDRV.c: 36:         __asm(" clrwdt");
-[; <"  clrwdt ;# ">
-"38
-[; ;GPIO/WDGDRV.c: 38:     }
-}
-[e $U 306  ]
+[; ;GPIO/WDGDRV.c: 36:     isr++;
+[e ++ _isr -> -> 1 `i `Vi ]
 "39
-[; ;GPIO/WDGDRV.c: 39:     else{
-[e :U 305 ]
+[; ;GPIO/WDGDRV.c: 39:     if (WDGM_PovideSuppervisionStatus()== OK && (Calls == isr) ){
+[e $ ! && == -> ( _WDGM_PovideSuppervisionStatus ..  `ui -> . `E2735 0 `ui == _Calls _isr 305  ]
 {
 "41
-[; ;GPIO/WDGDRV.c: 41:     }
+[; ;GPIO/WDGDRV.c: 41:         LATDbits.LATD4 = 0;
+[e = . . _LATDbits 0 4 -> -> 0 `i `uc ]
+"43
+[; ;GPIO/WDGDRV.c: 43:         __asm(" clrwdt");
+[; <"  clrwdt ;# ">
+"46
+[; ;GPIO/WDGDRV.c: 46:     }
+}
+[e $U 306  ]
+"47
+[; ;GPIO/WDGDRV.c: 47:     else{
+[e :U 305 ]
+{
+"49
+[; ;GPIO/WDGDRV.c: 49:         LATDbits.LATD4 = 1;
+[e = . . _LATDbits 0 4 -> -> 1 `i `uc ]
+"55
+[; ;GPIO/WDGDRV.c: 55:     }
 }
 [e :U 306 ]
-"45
-[; ;GPIO/WDGDRV.c: 45: }
+"59
+[; ;GPIO/WDGDRV.c: 59: }
 [e :UE 304 ]
 }

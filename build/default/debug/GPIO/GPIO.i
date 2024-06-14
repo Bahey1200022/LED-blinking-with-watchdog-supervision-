@@ -1,4 +1,4 @@
-# 1 "GPIO/LEDM.c"
+# 1 "GPIO/GPIO.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,9 +6,7 @@
 # 1 "<built-in>" 2
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.46\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "GPIO/LEDM.c" 2
-# 1 "GPIO/LEDM.h" 1
-# 12 "GPIO/LEDM.h"
+# 1 "GPIO/GPIO.c" 2
 # 1 "GPIO/GPIO.h" 1
 # 11 "GPIO/GPIO.h"
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.46\\pic\\include\\xc.h" 1 3
@@ -4949,50 +4947,16 @@ void GPIO_Init(void);
 
 
 void GPIO_Write(unsigned char PinId, unsigned char PinData);
-# 12 "GPIO/LEDM.h" 2
-
-# 1 "GPIO/WDGM.h" 1
-# 11 "GPIO/WDGM.h"
-typedef enum {OK = 0, NOK = 1}WDGM_StatusType;
-extern volatile int Calls;
-
-void WDGM_Init(void);
-void WDGM_MainFunction(void);
-WDGM_StatusType WDGM_PovideSuppervisionStatus(void);
-void WDGM_AlivenessIndication(void);
-# 13 "GPIO/LEDM.h" 2
-
-# 1 "GPIO/WDGDRV.h" 1
-# 15 "GPIO/WDGDRV.h"
-void WDGDrv_Init(void);
-void WDGDrv_IsrNotification(void);
-# 14 "GPIO/LEDM.h" 2
+# 1 "GPIO/GPIO.c" 2
 
 
-
-void LEDM_Init(void);
-void LEDM_Manage(void);
-# 1 "GPIO/LEDM.c" 2
-
-
-static volatile int ledstate=0;
-static volatile int ledCounter=0;
-void LEDM_Init(void){
-    GPIO_Init();
+void GPIO_Init(void){
+        TRISDbits.TRISD5 = 0;
+        LATDbits.LATD5 = 0;
 
 }
 
+void GPIO_Write(unsigned char PinId, unsigned char PinData){
 
-void LEDM_Manage(void){
-    ledCounter=ledCounter+10;
-
-    if (ledCounter>500){
-        ledstate=!ledstate;
-        GPIO_Write(5,ledstate);
-        ledCounter=0;
+   LATDbits.LATD5 = PinData;
     }
-
-
-
-
-}

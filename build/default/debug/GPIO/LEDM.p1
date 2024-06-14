@@ -1,27 +1,13 @@
 Version 4.0 HI-TECH Software Intermediate Code
-[p mainexit ]
-"17 GPIO/LEDM.h
-[; ;GPIO/LEDM.h: 17: void LEDM_Init(void);
-[v _LEDM_Init `(v ~T0 @X0 0 ef ]
-"15 GPIO/WDGDRV.h
-[; ;GPIO/WDGDRV.h: 15: void WDGDrv_Init(void);
-[v _WDGDrv_Init `(v ~T0 @X0 0 ef ]
-"14 GPIO/WDGM.h
-[; ;GPIO/WDGM.h: 14: void WDGM_Init(void);
-[v _WDGM_Init `(v ~T0 @X0 0 ef ]
-"18 GPIO/LEDM.h
-[; ;GPIO/LEDM.h: 18: void LEDM_Manage(void);
-[v _LEDM_Manage `(v ~T0 @X0 0 ef ]
+"13 GPIO/GPIO.h
+[; ;GPIO/GPIO.h: 13: void GPIO_Init(void);
+[v _GPIO_Init `(v ~T0 @X0 0 ef ]
+"16
+[; ;GPIO/GPIO.h: 16: void GPIO_Write(unsigned char PinId, unsigned char PinData);
+[v _GPIO_Write `(v ~T0 @X0 0 ef2`uc`uc ]
 "15 GPIO/WDGM.h
-[; ;GPIO/WDGM.h: 15: void WDGM_MainFunction(void);
-[v _WDGM_MainFunction `(v ~T0 @X0 0 ef ]
-"16 GPIO/WDGDRV.h
-[; ;GPIO/WDGDRV.h: 16: void WDGDrv_IsrNotification(void);
-[v _WDGDrv_IsrNotification `(v ~T0 @X0 0 ef ]
-[v F526 `(v ~T0 @X0 1 tf1`ul ]
-"20 C:\Program Files\Microchip\xc8\v2.46\pic\include\builtins.h
-[v __delay `JF526 ~T0 @X0 0 e ]
-[p i __delay ]
+[; ;GPIO/WDGM.h: 15: void WDGM_AlivenessIndication(void);
+[v _WDGM_AlivenessIndication `(v ~T0 @X0 0 ef ]
 "54 C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-K_DFP/1.13.292/xc8\pic\include\proc\pic18f46k20.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-K_DFP/1.13.292/xc8\pic\include\proc\pic18f46k20.h: 54: __asm("SSPMSK equ 0F77h");
 [; <" SSPMSK equ 0F77h ;# ">
@@ -463,49 +449,61 @@ Version 4.0 HI-TECH Software Intermediate Code
 "7352
 [; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-K_DFP/1.13.292/xc8\pic\include\proc\pic18f46k20.h: 7352: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-[v $root$_main `(v ~T0 @X0 0 e ]
-"18 GPIO/main.c
-[; ;GPIO/main.c: 18: int main() {
-[v _main `(i ~T0 @X0 1 ef ]
+"3 GPIO/LEDM.c
+[; ;GPIO/LEDM.c: 3: static volatile int ledstate=0;
+[v _ledstate `Vi ~T0 @X0 1 s ]
+[i _ledstate
+-> 0 `i
+]
+"4
+[; ;GPIO/LEDM.c: 4: static volatile int ledCounter=0;
+[v _ledCounter `Vi ~T0 @X0 1 s ]
+[i _ledCounter
+-> 0 `i
+]
+"5
+[; ;GPIO/LEDM.c: 5: void LEDM_Init(void){
+[v _LEDM_Init `(v ~T0 @X0 1 ef ]
 {
-[e :U _main ]
+[e :U _LEDM_Init ]
 [f ]
-"19
-[; ;GPIO/main.c: 19:     LEDM_Init();
-[e ( _LEDM_Init ..  ]
-"20
-[; ;GPIO/main.c: 20:     WDGDrv_Init();
-[e ( _WDGDrv_Init ..  ]
-"21
-[; ;GPIO/main.c: 21:     WDGM_Init();
-[e ( _WDGM_Init ..  ]
-"24
-[; ;GPIO/main.c: 24:     while (1){
-[e :U 307 ]
-{
-"25
-[; ;GPIO/main.c: 25:         LEDM_Manage();
-[e ( _LEDM_Manage ..  ]
-"26
-[; ;GPIO/main.c: 26:         WDGM_MainFunction();
-[e ( _WDGM_MainFunction ..  ]
-"27
-[; ;GPIO/main.c: 27:         WDGDrv_IsrNotification();
-[e ( _WDGDrv_IsrNotification ..  ]
-"28
-[; ;GPIO/main.c: 28:         _delay((unsigned long)((10)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"29
-[; ;GPIO/main.c: 29:     }
+"6
+[; ;GPIO/LEDM.c: 6:     GPIO_Init();
+[e ( _GPIO_Init ..  ]
+"8
+[; ;GPIO/LEDM.c: 8: }
+[e :UE 303 ]
 }
-[e :U 306 ]
-[e $U 307  ]
-[e :U 308 ]
-"31
-[; ;GPIO/main.c: 31:     return (0);
-[e ) -> 0 `i ]
-[e $UE 305  ]
-"32
-[; ;GPIO/main.c: 32: }
-[e :UE 305 ]
+"11
+[; ;GPIO/LEDM.c: 11: void LEDM_Manage(void){
+[v _LEDM_Manage `(v ~T0 @X0 1 ef ]
+{
+[e :U _LEDM_Manage ]
+[f ]
+"12
+[; ;GPIO/LEDM.c: 12:     ledCounter=ledCounter+10;
+[e = _ledCounter + _ledCounter -> 10 `i ]
+"14
+[; ;GPIO/LEDM.c: 14:     if (ledCounter>500){
+[e $ ! > _ledCounter -> 500 `i 305  ]
+{
+"15
+[; ;GPIO/LEDM.c: 15:         ledstate=!ledstate;
+[e = _ledstate -> ! != _ledstate -> 0 `i `i ]
+"16
+[; ;GPIO/LEDM.c: 16:         GPIO_Write(5,ledstate);
+[e ( _GPIO_Write (2 , -> -> 5 `i `uc -> _ledstate `uc ]
+"17
+[; ;GPIO/LEDM.c: 17:         ledCounter=0;
+[e = _ledCounter -> 0 `i ]
+"18
+[; ;GPIO/LEDM.c: 18:     }
+}
+[e :U 305 ]
+"20
+[; ;GPIO/LEDM.c: 20:     WDGM_AlivenessIndication();
+[e ( _WDGM_AlivenessIndication ..  ]
+"23
+[; ;GPIO/LEDM.c: 23: }
+[e :UE 304 ]
 }

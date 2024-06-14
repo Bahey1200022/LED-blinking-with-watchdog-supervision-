@@ -3,6 +3,8 @@
 #pragma config FOSC = HS    // Oscillator Selection bits (HS oscillator)
 
 #pragma config WDTPS = 32768 // Watchdog Timer Postscaler Select bits (1:32768) for ~65.5ms timeout
+static volatile int isr=0;
+static volatile int notifications=0;
 void WDGDrv_Init(void){
     
 
@@ -18,7 +20,8 @@ void WDGDrv_Init(void){
 
     // Enable the Watchdog Timer
     WDTCONbits.SWDTEN = 1;
-    
+    TRISDbits.TRISD4 = 0; // Configure RD5 as an output
+
     
 }
 
@@ -30,13 +33,24 @@ void WDGDrv_IsrNotification(void){
 //shall refresh the watchdog timer otherwise it will leave it to reset. The conditions are:
 //1. WDGM_MainFunction is not stuck.
 //2. The WDGM State set by the WDGM_MainFunction is OK.
+    isr++;
     
-    if (WDGM_PovideSuppervisionStatus()==OK){
+    
+    if (WDGM_PovideSuppervisionStatus()== OK && (Calls == isr) ){
         //REFRESH
+        LATDbits.LATD4 = 0;
+
         CLRWDT(); // Clear Watchdog Timer
+
 
     }
     else{
+        
+        LATDbits.LATD4 = 1;
+        
+
+        
+        
         //reset
     }
     

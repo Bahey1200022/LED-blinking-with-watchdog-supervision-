@@ -4943,14 +4943,17 @@ unsigned char __t3rd16on(void);
 # 10 "GPIO/WDGDRV.h" 2
 
 
+
 # 1 "GPIO/WDGM.h" 1
 # 11 "GPIO/WDGM.h"
 typedef enum {OK = 0, NOK = 1}WDGM_StatusType;
+extern volatile int Calls;
+
 void WDGM_Init(void);
 void WDGM_MainFunction(void);
 WDGM_StatusType WDGM_PovideSuppervisionStatus(void);
 void WDGM_AlivenessIndication(void);
-# 12 "GPIO/WDGDRV.h" 2
+# 13 "GPIO/WDGDRV.h" 2
 
 
 void WDGDrv_Init(void);
@@ -4961,9 +4964,12 @@ void WDGDrv_IsrNotification(void);
 #pragma config FOSC = HS
 
 #pragma config WDTPS = 32768
+static volatile int isr=0;
+static volatile int notifications=0;
 void WDGDrv_Init(void){
-# 20 "GPIO/WDGDRV.c"
+# 22 "GPIO/WDGDRV.c"
     WDTCONbits.SWDTEN = 1;
+    TRISDbits.TRISD4 = 0;
 
 
 }
@@ -4976,13 +4982,24 @@ void WDGDrv_IsrNotification(void){
 
 
 
+    isr++;
 
-    if (WDGM_PovideSuppervisionStatus()==OK){
+
+    if (WDGM_PovideSuppervisionStatus()== OK && (Calls == isr) ){
+
+        LATDbits.LATD4 = 0;
 
         __asm(" clrwdt");
 
+
     }
     else{
+
+        LATDbits.LATD4 = 1;
+
+
+
+
 
     }
 

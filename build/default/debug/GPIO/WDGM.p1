@@ -1,27 +1,38 @@
 Version 4.0 HI-TECH Software Intermediate Code
-[p mainexit ]
-"17 GPIO/LEDM.h
-[; ;GPIO/LEDM.h: 17: void LEDM_Init(void);
-[v _LEDM_Init `(v ~T0 @X0 0 ef ]
-"15 GPIO/WDGDRV.h
-[; ;GPIO/WDGDRV.h: 15: void WDGDrv_Init(void);
-[v _WDGDrv_Init `(v ~T0 @X0 0 ef ]
-"14 GPIO/WDGM.h
-[; ;GPIO/WDGM.h: 14: void WDGM_Init(void);
-[v _WDGM_Init `(v ~T0 @X0 0 ef ]
-"18 GPIO/LEDM.h
-[; ;GPIO/LEDM.h: 18: void LEDM_Manage(void);
-[v _LEDM_Manage `(v ~T0 @X0 0 ef ]
-"15 GPIO/WDGM.h
-[; ;GPIO/WDGM.h: 15: void WDGM_MainFunction(void);
-[v _WDGM_MainFunction `(v ~T0 @X0 0 ef ]
-"16 GPIO/WDGDRV.h
-[; ;GPIO/WDGDRV.h: 16: void WDGDrv_IsrNotification(void);
-[v _WDGDrv_IsrNotification `(v ~T0 @X0 0 ef ]
-[v F526 `(v ~T0 @X0 1 tf1`ul ]
-"20 C:\Program Files\Microchip\xc8\v2.46\pic\include\builtins.h
-[v __delay `JF526 ~T0 @X0 0 e ]
-[p i __delay ]
+"5 GPIO/WDGM.c
+[; ;GPIO/WDGM.c: 5: WDGM_StatusType wdgmStatus = OK;
+[c E2735 0 1 .. ]
+[n E2735 . OK NOK  ]
+"2709 C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-K_DFP/1.13.292/xc8\pic\include\proc\pic18f46k20.h
+[; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-K_DFP/1.13.292/xc8\pic\include\proc\pic18f46k20.h: 2709:     struct {
+[s S102 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S102 . TRISD0 TRISD1 TRISD2 TRISD3 TRISD4 TRISD5 TRISD6 TRISD7 ]
+"2719
+[; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-K_DFP/1.13.292/xc8\pic\include\proc\pic18f46k20.h: 2719:     struct {
+[s S103 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S103 . RD0 RD1 RD2 RD3 RD4 RD5 RD6 RD7 ]
+"2708
+[; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-K_DFP/1.13.292/xc8\pic\include\proc\pic18f46k20.h: 2708: typedef union {
+[u S101 `S102 1 `S103 1 ]
+[n S101 . . . ]
+"2730
+[; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-K_DFP/1.13.292/xc8\pic\include\proc\pic18f46k20.h: 2730: extern volatile TRISDbits_t TRISDbits __attribute__((address(0xF95)));
+[v _TRISDbits `VS101 ~T0 @X0 0 e@3989 ]
+"1874
+[; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-K_DFP/1.13.292/xc8\pic\include\proc\pic18f46k20.h: 1874:     struct {
+[s S78 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S78 . LATD0 LATD1 LATD2 LATD3 LATD4 LATD5 LATD6 LATD7 ]
+"1884
+[; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-K_DFP/1.13.292/xc8\pic\include\proc\pic18f46k20.h: 1884:     struct {
+[s S79 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S79 . LD0 LD1 LD2 LD3 LD4 LD5 LD6 LD7 ]
+"1873
+[; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-K_DFP/1.13.292/xc8\pic\include\proc\pic18f46k20.h: 1873: typedef union {
+[u S77 `S78 1 `S79 1 ]
+[n S77 . . . ]
+"1895
+[; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-K_DFP/1.13.292/xc8\pic\include\proc\pic18f46k20.h: 1895: extern volatile LATDbits_t LATDbits __attribute__((address(0xF8C)));
+[v _LATDbits `VS77 ~T0 @X0 0 e@3980 ]
 "54 C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-K_DFP/1.13.292/xc8\pic\include\proc\pic18f46k20.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-K_DFP/1.13.292/xc8\pic\include\proc\pic18f46k20.h: 54: __asm("SSPMSK equ 0F77h");
 [; <" SSPMSK equ 0F77h ;# ">
@@ -463,49 +474,137 @@ Version 4.0 HI-TECH Software Intermediate Code
 "7352
 [; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-K_DFP/1.13.292/xc8\pic\include\proc\pic18f46k20.h: 7352: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-[v $root$_main `(v ~T0 @X0 0 e ]
-"18 GPIO/main.c
-[; ;GPIO/main.c: 18: int main() {
-[v _main `(i ~T0 @X0 1 ef ]
+"3 GPIO/WDGM.c
+[; ;GPIO/WDGM.c: 3: static volatile int mainFuncCalls = 0;
+[v _mainFuncCalls `Vi ~T0 @X0 1 s ]
+[i _mainFuncCalls
+-> 0 `i
+]
+"4
+[; ;GPIO/WDGM.c: 4: static volatile int lastCheckTime = 0;
+[v _lastCheckTime `Vi ~T0 @X0 1 s ]
+[i _lastCheckTime
+-> 0 `i
+]
+"5
+[; ;GPIO/WDGM.c: 5: WDGM_StatusType wdgmStatus = OK;
+[v _wdgmStatus `E2735 ~T0 @X0 1 e ]
+[i _wdgmStatus
+. `E2735 0
+]
+"6
+[; ;GPIO/WDGM.c: 6: static volatile int wgdmMainFuncTurn = 0;
+[v _wgdmMainFuncTurn `Vi ~T0 @X0 1 s ]
+[i _wgdmMainFuncTurn
+-> 0 `i
+]
+"8
+[; ;GPIO/WDGM.c: 8: void WDGM_Init(void) {
+[v _WDGM_Init `(v ~T0 @X0 1 ef ]
 {
-[e :U _main ]
+[e :U _WDGM_Init ]
 [f ]
-"19
-[; ;GPIO/main.c: 19:     LEDM_Init();
-[e ( _LEDM_Init ..  ]
-"20
-[; ;GPIO/main.c: 20:     WDGDrv_Init();
-[e ( _WDGDrv_Init ..  ]
-"21
-[; ;GPIO/main.c: 21:     WDGM_Init();
-[e ( _WDGM_Init ..  ]
+"10
+[; ;GPIO/WDGM.c: 10:     mainFuncCalls = 0;
+[e = _mainFuncCalls -> 0 `i ]
+"11
+[; ;GPIO/WDGM.c: 11:     lastCheckTime = 0;
+[e = _lastCheckTime -> 0 `i ]
+"12
+[; ;GPIO/WDGM.c: 12:     wdgmStatus = OK;
+[e = _wdgmStatus . `E2735 0 ]
+"13
+[; ;GPIO/WDGM.c: 13:         TRISDbits.TRISD3 = 0;
+[e = . . _TRISDbits 0 3 -> -> 0 `i `uc ]
+"15
+[; ;GPIO/WDGM.c: 15: }
+[e :UE 303 ]
+}
+"17
+[; ;GPIO/WDGM.c: 17: void WDGM_MainFunction(void) {
+[v _WDGM_MainFunction `(v ~T0 @X0 1 ef ]
+{
+[e :U _WDGM_MainFunction ]
+[f ]
+"23
+[; ;GPIO/WDGM.c: 23:     if (++wgdmMainFuncTurn >= 2) {
+[e $ ! >= =+ _wgdmMainFuncTurn -> -> 1 `i `Vi -> 2 `i 305  ]
+{
 "24
-[; ;GPIO/main.c: 24:     while (1){
+[; ;GPIO/WDGM.c: 24:         wgdmMainFuncTurn = 0;
+[e = _wgdmMainFuncTurn -> 0 `i ]
+"27
+[; ;GPIO/WDGM.c: 27:         if (++lastCheckTime >= 5) {
+[e $ ! >= =+ _lastCheckTime -> -> 1 `i `Vi -> 5 `i 306  ]
+{
+"28
+[; ;GPIO/WDGM.c: 28:             lastCheckTime = 0;
+[e = _lastCheckTime -> 0 `i ]
+"31
+[; ;GPIO/WDGM.c: 31:             if (mainFuncCalls >= 8 && mainFuncCalls <= 12) {
+[e $ ! && >= _mainFuncCalls -> 8 `i <= _mainFuncCalls -> 12 `i 307  ]
+{
+"32
+[; ;GPIO/WDGM.c: 32:                 wdgmStatus = OK;
+[e = _wdgmStatus . `E2735 0 ]
+"33
+[; ;GPIO/WDGM.c: 33:                 LATDbits.LATD3 = 0;
+[e = . . _LATDbits 0 3 -> -> 0 `i `uc ]
+"34
+[; ;GPIO/WDGM.c: 34:             } else {
+}
+[e $U 308  ]
 [e :U 307 ]
 {
-"25
-[; ;GPIO/main.c: 25:         LEDM_Manage();
-[e ( _LEDM_Manage ..  ]
-"26
-[; ;GPIO/main.c: 26:         WDGM_MainFunction();
-[e ( _WDGM_MainFunction ..  ]
-"27
-[; ;GPIO/main.c: 27:         WDGDrv_IsrNotification();
-[e ( _WDGDrv_IsrNotification ..  ]
-"28
-[; ;GPIO/main.c: 28:         _delay((unsigned long)((10)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"29
-[; ;GPIO/main.c: 29:     }
+"35
+[; ;GPIO/WDGM.c: 35:                 wdgmStatus = NOK;
+[e = _wdgmStatus . `E2735 1 ]
+"36
+[; ;GPIO/WDGM.c: 36:                 LATDbits.LATD3 = 1;
+[e = . . _LATDbits 0 3 -> -> 1 `i `uc ]
+"37
+[; ;GPIO/WDGM.c: 37:             }
+}
+[e :U 308 ]
+"38
+[; ;GPIO/WDGM.c: 38:             mainFuncCalls = 0;
+[e = _mainFuncCalls -> 0 `i ]
+"39
+[; ;GPIO/WDGM.c: 39:         }
 }
 [e :U 306 ]
-[e $U 307  ]
-[e :U 308 ]
-"31
-[; ;GPIO/main.c: 31:     return (0);
-[e ) -> 0 `i ]
-[e $UE 305  ]
-"32
-[; ;GPIO/main.c: 32: }
-[e :UE 305 ]
+"40
+[; ;GPIO/WDGM.c: 40:     }
+}
+[e :U 305 ]
+"41
+[; ;GPIO/WDGM.c: 41: }
+[e :UE 304 ]
+}
+"43
+[; ;GPIO/WDGM.c: 43: WDGM_StatusType WDGM_PovideSuppervisionStatus(void) {
+[v _WDGM_PovideSuppervisionStatus `(E2735 ~T0 @X0 1 ef ]
+{
+[e :U _WDGM_PovideSuppervisionStatus ]
+[f ]
+"45
+[; ;GPIO/WDGM.c: 45:     return wdgmStatus;
+[e ) _wdgmStatus ]
+[e $UE 309  ]
+"46
+[; ;GPIO/WDGM.c: 46: }
+[e :UE 309 ]
+}
+"48
+[; ;GPIO/WDGM.c: 48: void WDGM_AlivenessIndication(void) {
+[v _WDGM_AlivenessIndication `(v ~T0 @X0 1 ef ]
+{
+[e :U _WDGM_AlivenessIndication ]
+[f ]
+"51
+[; ;GPIO/WDGM.c: 51:     mainFuncCalls++;
+[e ++ _mainFuncCalls -> -> 1 `i `Vi ]
+"52
+[; ;GPIO/WDGM.c: 52: }
+[e :UE 310 ]
 }

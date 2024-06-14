@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
-  <executable name="dist/default/production\watchdog.X.production.hex">
+  <executable name="dist/default/debug\watchdog.X.debug.hex">
     <memory name="program">
       <units>bytes</units>
       <length>65536</length>
-      <used>438</used>
-      <free>65098</free>
+      <used>256</used>
+      <free>65280</free>
     </memory>
     <memory name="data">
       <units>bytes</units>
       <length>3936</length>
-      <used>19</used>
-      <free>3917</free>
+      <used>13</used>
+      <free>3923</free>
     </memory>
   </executable>
 </project>

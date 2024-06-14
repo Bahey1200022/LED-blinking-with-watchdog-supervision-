@@ -1,4 +1,4 @@
-# 1 "GPIO/LEDM.c"
+# 1 "GPIO/WDGM.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,13 +6,11 @@
 # 1 "<built-in>" 2
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.46\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "GPIO/LEDM.c" 2
-# 1 "GPIO/LEDM.h" 1
-# 12 "GPIO/LEDM.h"
-# 1 "GPIO/GPIO.h" 1
-# 11 "GPIO/GPIO.h"
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.46\\pic\\include\\xc.h" 1 3
-# 18 "C:\\Program Files\\Microchip\\xc8\\v2.46\\pic\\include\\xc.h" 3
+# 1 "GPIO/WDGM.c" 2
+# 1 "GPIO/WDGM.h" 1
+# 10 "GPIO/WDGM.h"
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.46\\pic\\include\\c99\\../xc.h" 1 3
+# 18 "C:\\Program Files\\Microchip\\xc8\\v2.46\\pic\\include\\c99\\../xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
 
 extern double __fpnormalize(double);
@@ -128,7 +126,7 @@ uldiv_t uldiv (unsigned long, unsigned long);
 
 #pragma intrinsic(__builtin_software_breakpoint)
 extern void __builtin_software_breakpoint(void);
-# 23 "C:\\Program Files\\Microchip\\xc8\\v2.46\\pic\\include\\xc.h" 2 3
+# 23 "C:\\Program Files\\Microchip\\xc8\\v2.46\\pic\\include\\c99\\../xc.h" 2 3
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.46\\pic\\include\\builtins.h" 1 3
 
@@ -241,8 +239,8 @@ extern __attribute__((nonreentrant)) void _delaywdt(uint32_t);
 
 #pragma intrinsic(_delay3)
 extern __attribute__((nonreentrant)) void _delay3(uint8_t);
-# 24 "C:\\Program Files\\Microchip\\xc8\\v2.46\\pic\\include\\xc.h" 2 3
-# 33 "C:\\Program Files\\Microchip\\xc8\\v2.46\\pic\\include\\xc.h" 3
+# 24 "C:\\Program Files\\Microchip\\xc8\\v2.46\\pic\\include\\c99\\../xc.h" 2 3
+# 33 "C:\\Program Files\\Microchip\\xc8\\v2.46\\pic\\include\\c99\\../xc.h" 3
 # 1 "C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-K_DFP/1.13.292/xc8\\pic\\include\\pic18.h" 1 3
 
 
@@ -4942,57 +4940,63 @@ __attribute__((__unsupported__("The " "Write_b_eep" " routine is no longer suppo
 unsigned char __t1rd16on(void);
 unsigned char __t3rd16on(void);
 # 33 "C:\\Program Files\\Microchip\\xc8\\v2.46\\pic\\include\\xc.h" 2 3
-# 11 "GPIO/GPIO.h" 2
+# 10 "GPIO/WDGM.h" 2
 
-
-void GPIO_Init(void);
-
-
-void GPIO_Write(unsigned char PinId, unsigned char PinData);
-# 12 "GPIO/LEDM.h" 2
-
-# 1 "GPIO/WDGM.h" 1
-# 11 "GPIO/WDGM.h"
 typedef enum {OK = 0, NOK = 1}WDGM_StatusType;
-extern volatile int Calls;
-
 void WDGM_Init(void);
 void WDGM_MainFunction(void);
 WDGM_StatusType WDGM_PovideSuppervisionStatus(void);
 void WDGM_AlivenessIndication(void);
-# 13 "GPIO/LEDM.h" 2
-
-# 1 "GPIO/WDGDRV.h" 1
-# 15 "GPIO/WDGDRV.h"
-void WDGDrv_Init(void);
-void WDGDrv_IsrNotification(void);
-# 14 "GPIO/LEDM.h" 2
+# 1 "GPIO/WDGM.c" 2
 
 
+static volatile int mainFuncCalls = 0;
+static volatile int lastCheckTime = 0;
+WDGM_StatusType wdgmStatus = OK;
+static volatile int wgdmMainFuncTurn = 0;
 
-void LEDM_Init(void);
-void LEDM_Manage(void);
-# 1 "GPIO/LEDM.c" 2
+void WDGM_Init(void) {
 
-
-static volatile int ledstate=0;
-static volatile int ledCounter=0;
-void LEDM_Init(void){
-    GPIO_Init();
+    mainFuncCalls = 0;
+    lastCheckTime = 0;
+    wdgmStatus = OK;
+        TRISDbits.TRISD3 = 0;
 
 }
 
+void WDGM_MainFunction(void) {
 
-void LEDM_Manage(void){
-    ledCounter=ledCounter+10;
 
-    if (ledCounter>500){
-        ledstate=!ledstate;
-        GPIO_Write(5,ledstate);
-        ledCounter=0;
+
+
+
+    if (++wgdmMainFuncTurn >= 2) {
+        wgdmMainFuncTurn = 0;
+
+
+        if (++lastCheckTime >= 5) {
+            lastCheckTime = 0;
+
+
+            if (mainFuncCalls >= 8 && mainFuncCalls <= 12) {
+                wdgmStatus = OK;
+                LATDbits.LATD3 = 0;
+            } else {
+                wdgmStatus = NOK;
+                LATDbits.LATD3 = 1;
+            }
+            mainFuncCalls = 0;
+        }
     }
+}
+
+WDGM_StatusType WDGM_PovideSuppervisionStatus(void) {
+
+    return wdgmStatus;
+}
+
+void WDGM_AlivenessIndication(void) {
 
 
-
-
+    mainFuncCalls++;
 }
