@@ -1,0 +1,148 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"5 GPIO/WDGM.c
+[; ;GPIO/WDGM.c: 5: WDGM_StatusType wdgmStatus = OK;
+[c E2 0 1 .. ]
+[n E2 . OK NOK  ]
+"3 GPIO/WDGM.c
+[; ;GPIO/WDGM.c: 3: static volatile int mainFuncCalls = 0;
+[v _mainFuncCalls `Vi ~T0 @X0 1 s ]
+[i _mainFuncCalls
+-> 0 `i
+]
+"4
+[; ;GPIO/WDGM.c: 4: static volatile int lastCheckTime = 0;
+[v _lastCheckTime `Vi ~T0 @X0 1 s ]
+[i _lastCheckTime
+-> 0 `i
+]
+"5
+[; ;GPIO/WDGM.c: 5: WDGM_StatusType wdgmStatus = OK;
+[v _wdgmStatus `E2 ~T0 @X0 1 e ]
+[i _wdgmStatus
+. `E2 0
+]
+"6
+[; ;GPIO/WDGM.c: 6: static volatile int wgdmMainFuncTurn = 0;
+[v _wgdmMainFuncTurn `Vi ~T0 @X0 1 s ]
+[i _wgdmMainFuncTurn
+-> 0 `i
+]
+"8
+[; ;GPIO/WDGM.c: 8: void WDGM_Init(void) {
+[v _WDGM_Init `(v ~T0 @X0 1 ef ]
+{
+[e :U _WDGM_Init ]
+[f ]
+"10
+[; ;GPIO/WDGM.c: 10:     mainFuncCalls = 0;
+[e = _mainFuncCalls -> 0 `i ]
+"11
+[; ;GPIO/WDGM.c: 11:     lastCheckTime = 0;
+[e = _lastCheckTime -> 0 `i ]
+"12
+[; ;GPIO/WDGM.c: 12:     wdgmStatus = OK;
+[e = _wdgmStatus . `E2 0 ]
+"13
+[; ;GPIO/WDGM.c: 13: }
+[e :UE 1 ]
+}
+"15
+[; ;GPIO/WDGM.c: 15: void WDGM_MainFunction(void) {
+[v _WDGM_MainFunction `(v ~T0 @X0 1 ef ]
+{
+[e :U _WDGM_MainFunction ]
+[f ]
+"20
+[; ;GPIO/WDGM.c: 20:     if (wgdmMainFuncTurn == 2) {
+[e $ ! == _wgdmMainFuncTurn -> 2 `i 3  ]
+{
+"21
+[; ;GPIO/WDGM.c: 21:         if (lastCheckTime == 10) {
+[e $ ! == _lastCheckTime -> 10 `i 4  ]
+{
+"22
+[; ;GPIO/WDGM.c: 22:             if (mainFuncCalls >= 8 && mainFuncCalls <= 12) {
+[e $ ! && >= _mainFuncCalls -> 8 `i <= _mainFuncCalls -> 12 `i 5  ]
+{
+"23
+[; ;GPIO/WDGM.c: 23:                 wdgmStatus = OK;
+[e = _wdgmStatus . `E2 0 ]
+"24
+[; ;GPIO/WDGM.c: 24:             } else {
+}
+[e $U 6  ]
+[e :U 5 ]
+{
+"25
+[; ;GPIO/WDGM.c: 25:                 wdgmStatus = NOK;
+[e = _wdgmStatus . `E2 1 ]
+"26
+[; ;GPIO/WDGM.c: 26:             }
+}
+[e :U 6 ]
+"27
+[; ;GPIO/WDGM.c: 27:             mainFuncCalls = 0;
+[e = _mainFuncCalls -> 0 `i ]
+"28
+[; ;GPIO/WDGM.c: 28:             lastCheckTime = 0;
+[e = _lastCheckTime -> 0 `i ]
+"29
+[; ;GPIO/WDGM.c: 29:         } else {
+}
+[e $U 7  ]
+[e :U 4 ]
+{
+"30
+[; ;GPIO/WDGM.c: 30:             lastCheckTime++;
+[e ++ _lastCheckTime -> -> 1 `i `Vi ]
+"31
+[; ;GPIO/WDGM.c: 31:         }
+}
+[e :U 7 ]
+"32
+[; ;GPIO/WDGM.c: 32:         wgdmMainFuncTurn = 0;
+[e = _wgdmMainFuncTurn -> 0 `i ]
+"33
+[; ;GPIO/WDGM.c: 33:     } else {
+}
+[e $U 8  ]
+[e :U 3 ]
+{
+"34
+[; ;GPIO/WDGM.c: 34:         wgdmMainFuncTurn++;
+[e ++ _wgdmMainFuncTurn -> -> 1 `i `Vi ]
+"35
+[; ;GPIO/WDGM.c: 35:     }
+}
+[e :U 8 ]
+"36
+[; ;GPIO/WDGM.c: 36: }
+[e :UE 2 ]
+}
+"38
+[; ;GPIO/WDGM.c: 38: WDGM_StatusType WDGM_PovideSuppervisionStatus(void) {
+[v _WDGM_PovideSuppervisionStatus `(E2 ~T0 @X0 1 ef ]
+{
+[e :U _WDGM_PovideSuppervisionStatus ]
+[f ]
+"40
+[; ;GPIO/WDGM.c: 40:     return wdgmStatus;
+[e ) _wdgmStatus ]
+[e $UE 9  ]
+"41
+[; ;GPIO/WDGM.c: 41: }
+[e :UE 9 ]
+}
+"43
+[; ;GPIO/WDGM.c: 43: void WDGM_AlivenessIndication(void) {
+[v _WDGM_AlivenessIndication `(v ~T0 @X0 1 ef ]
+{
+[e :U _WDGM_AlivenessIndication ]
+[f ]
+"46
+[; ;GPIO/WDGM.c: 46:     mainFuncCalls++;
+[e ++ _mainFuncCalls -> -> 1 `i `Vi ]
+"47
+[; ;GPIO/WDGM.c: 47: }
+[e :UE 10 ]
+}
