@@ -2,25 +2,16 @@
 
 #pragma config FOSC = HS    // Oscillator Selection bits (HS oscillator)
 
-#pragma config WDTPS = 32768 // Watchdog Timer Postscaler Select bits (1:32768) for ~65.5ms timeout
+
 static volatile int isr=0;
 static volatile int notifications=0;
 void WDGDrv_Init(void){
     
 
-
-    // Set up the Watchdog Timer Prescaler to achieve approximately 50ms timeout
-    // WDT Timeout Period = (Prescaler * 4) / Fosc
-    // Assuming Fosc = 4MHz (since we didn't set it specifically in this example)
-    // For 50ms timeout, the prescaler should be:
-    // 50ms = (Prescaler * 4) / 4MHz
-    // Prescaler = 50ms * 4MHz / 4 = 50 * 1000 / 4 = 12500
-    // With the WDT prescaler options, the closest value is 1:128, which gives:
-    // 128 * 4 / 4MHz = 32ms (closer to 50ms isn't possible, so we'll use 32ms)
+    #pragma config WDTPS = 128 // Configure for approximately 32ms timeout with 4MHz oscillator
 
     // Enable the Watchdog Timer
     WDTCONbits.SWDTEN = 1;
-    TRISDbits.TRISD4 = 0; // Configure RD5 as an output
 
     
 }
@@ -38,18 +29,13 @@ void WDGDrv_IsrNotification(void){
     
     if (WDGM_PovideSuppervisionStatus()== OK && (Calls == isr) ){
         //REFRESH
-        LATDbits.LATD4 = 0;
 
         CLRWDT(); // Clear Watchdog Timer
 
 
     }
     else{
-        
-        LATDbits.LATD4 = 1;
-        
-
-        
+               
         
         //reset
     }

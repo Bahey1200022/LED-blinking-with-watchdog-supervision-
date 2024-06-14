@@ -4963,13 +4963,16 @@ void WDGDrv_IsrNotification(void);
 
 #pragma config FOSC = HS
 
-#pragma config WDTPS = 32768
+
 static volatile int isr=0;
 static volatile int notifications=0;
 void WDGDrv_Init(void){
-# 22 "GPIO/WDGDRV.c"
-    WDTCONbits.SWDTEN = 1;
-    TRISDbits.TRISD4 = 0;
+
+
+#pragma config WDTPS = 128
+
+
+ WDTCONbits.SWDTEN = 1;
 
 
 }
@@ -4987,17 +4990,12 @@ void WDGDrv_IsrNotification(void){
 
     if (WDGM_PovideSuppervisionStatus()== OK && (Calls == isr) ){
 
-        LATDbits.LATD4 = 0;
 
         __asm(" clrwdt");
 
 
     }
     else{
-
-        LATDbits.LATD4 = 1;
-
-
 
 
 

@@ -5135,6 +5135,14 @@ void LEDM_Manage(void);
 
 
 int main() {
+        TRISDbits.TRISD1 = 0;
+        LATDbits.LATD1 = 1;
+        _delay((unsigned long)((100)*(8000000/4000.0)));
+        LATDbits.LATD1 = 0;
+        _delay((unsigned long)((100)*(8000000/4000.0)));
+
+
+
     LEDM_Init();
     WDGDrv_Init();
     WDGM_Init();

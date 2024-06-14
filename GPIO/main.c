@@ -16,6 +16,14 @@
  * 
  */
 int main() {
+        TRISDbits.TRISD1 = 0; // Configure RD5 as an output
+        LATDbits.LATD1 = 1;
+        __delay_ms(100);
+        LATDbits.LATD1 = 0;
+        __delay_ms(100);
+
+
+    
     LEDM_Init();
     WDGDrv_Init();
     WDGM_Init();

@@ -1,5 +1,39 @@
 Version 4.0 HI-TECH Software Intermediate Code
 [p mainexit ]
+"2709 C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-K_DFP/1.13.292/xc8\pic\include\proc\pic18f46k20.h
+[; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-K_DFP/1.13.292/xc8\pic\include\proc\pic18f46k20.h: 2709:     struct {
+[s S104 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S104 . TRISD0 TRISD1 TRISD2 TRISD3 TRISD4 TRISD5 TRISD6 TRISD7 ]
+"2719
+[; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-K_DFP/1.13.292/xc8\pic\include\proc\pic18f46k20.h: 2719:     struct {
+[s S105 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S105 . RD0 RD1 RD2 RD3 RD4 RD5 RD6 RD7 ]
+"2708
+[; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-K_DFP/1.13.292/xc8\pic\include\proc\pic18f46k20.h: 2708: typedef union {
+[u S103 `S104 1 `S105 1 ]
+[n S103 . . . ]
+"2730
+[; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-K_DFP/1.13.292/xc8\pic\include\proc\pic18f46k20.h: 2730: extern volatile TRISDbits_t TRISDbits __attribute__((address(0xF95)));
+[v _TRISDbits `VS103 ~T0 @X0 0 e@3989 ]
+"1874
+[; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-K_DFP/1.13.292/xc8\pic\include\proc\pic18f46k20.h: 1874:     struct {
+[s S80 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S80 . LATD0 LATD1 LATD2 LATD3 LATD4 LATD5 LATD6 LATD7 ]
+"1884
+[; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-K_DFP/1.13.292/xc8\pic\include\proc\pic18f46k20.h: 1884:     struct {
+[s S81 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S81 . LD0 LD1 LD2 LD3 LD4 LD5 LD6 LD7 ]
+"1873
+[; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-K_DFP/1.13.292/xc8\pic\include\proc\pic18f46k20.h: 1873: typedef union {
+[u S79 `S80 1 `S81 1 ]
+[n S79 . . . ]
+"1895
+[; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-K_DFP/1.13.292/xc8\pic\include\proc\pic18f46k20.h: 1895: extern volatile LATDbits_t LATDbits __attribute__((address(0xF8C)));
+[v _LATDbits `VS79 ~T0 @X0 0 e@3980 ]
+[v F526 `(v ~T0 @X0 1 tf1`ul ]
+"20 C:\Program Files\Microchip\xc8\v2.46\pic\include\builtins.h
+[v __delay `JF526 ~T0 @X0 0 e ]
+[p i __delay ]
 "17 GPIO/LEDM.h
 [; ;GPIO/LEDM.h: 17: void LEDM_Init(void);
 [v _LEDM_Init `(v ~T0 @X0 0 ef ]
@@ -18,10 +52,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "16 GPIO/WDGDRV.h
 [; ;GPIO/WDGDRV.h: 16: void WDGDrv_IsrNotification(void);
 [v _WDGDrv_IsrNotification `(v ~T0 @X0 0 ef ]
-[v F526 `(v ~T0 @X0 1 tf1`ul ]
-"20 C:\Program Files\Microchip\xc8\v2.46\pic\include\builtins.h
-[v __delay `JF526 ~T0 @X0 0 e ]
-[p i __delay ]
 "54 C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-K_DFP/1.13.292/xc8\pic\include\proc\pic18f46k20.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-K_DFP/1.13.292/xc8\pic\include\proc\pic18f46k20.h: 54: __asm("SSPMSK equ 0F77h");
 [; <" SSPMSK equ 0F77h ;# ">
@@ -471,41 +501,56 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U _main ]
 [f ]
 "19
-[; ;GPIO/main.c: 19:     LEDM_Init();
-[e ( _LEDM_Init ..  ]
+[; ;GPIO/main.c: 19:         TRISDbits.TRISD1 = 0;
+[e = . . _TRISDbits 0 1 -> -> 0 `i `uc ]
 "20
-[; ;GPIO/main.c: 20:     WDGDrv_Init();
-[e ( _WDGDrv_Init ..  ]
+[; ;GPIO/main.c: 20:         LATDbits.LATD1 = 1;
+[e = . . _LATDbits 0 1 -> -> 1 `i `uc ]
 "21
-[; ;GPIO/main.c: 21:     WDGM_Init();
+[; ;GPIO/main.c: 21:         _delay((unsigned long)((100)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"22
+[; ;GPIO/main.c: 22:         LATDbits.LATD1 = 0;
+[e = . . _LATDbits 0 1 -> -> 0 `i `uc ]
+"23
+[; ;GPIO/main.c: 23:         _delay((unsigned long)((100)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"27
+[; ;GPIO/main.c: 27:     LEDM_Init();
+[e ( _LEDM_Init ..  ]
+"28
+[; ;GPIO/main.c: 28:     WDGDrv_Init();
+[e ( _WDGDrv_Init ..  ]
+"29
+[; ;GPIO/main.c: 29:     WDGM_Init();
 [e ( _WDGM_Init ..  ]
-"24
-[; ;GPIO/main.c: 24:     while (1){
+"32
+[; ;GPIO/main.c: 32:     while (1){
 [e :U 307 ]
 {
-"25
-[; ;GPIO/main.c: 25:         LEDM_Manage();
+"33
+[; ;GPIO/main.c: 33:         LEDM_Manage();
 [e ( _LEDM_Manage ..  ]
-"26
-[; ;GPIO/main.c: 26:         WDGM_MainFunction();
+"34
+[; ;GPIO/main.c: 34:         WDGM_MainFunction();
 [e ( _WDGM_MainFunction ..  ]
-"27
-[; ;GPIO/main.c: 27:         WDGDrv_IsrNotification();
+"35
+[; ;GPIO/main.c: 35:         WDGDrv_IsrNotification();
 [e ( _WDGDrv_IsrNotification ..  ]
-"28
-[; ;GPIO/main.c: 28:         _delay((unsigned long)((10)*(8000000/4000.0)));
+"36
+[; ;GPIO/main.c: 36:         _delay((unsigned long)((10)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 10 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"29
-[; ;GPIO/main.c: 29:     }
+"37
+[; ;GPIO/main.c: 37:     }
 }
 [e :U 306 ]
 [e $U 307  ]
 [e :U 308 ]
-"31
-[; ;GPIO/main.c: 31:     return (0);
+"39
+[; ;GPIO/main.c: 39:     return (0);
 [e ) -> 0 `i ]
 [e $UE 305  ]
-"32
-[; ;GPIO/main.c: 32: }
+"40
+[; ;GPIO/main.c: 40: }
 [e :UE 305 ]
 }
