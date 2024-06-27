@@ -5,6 +5,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "16
 [; ;GPIO/GPIO.h: 16: void GPIO_Write(unsigned char PinId, unsigned char PinData);
 [v _GPIO_Write `(v ~T0 @X0 0 ef2`uc`uc ]
+"17 GPIO/WDGM.h
+[; ;GPIO/WDGM.h: 17: void WDGM_AlivenessIndication(void);
+[v _WDGM_AlivenessIndication `(v ~T0 @X0 0 ef ]
 "54 C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-K_DFP/1.13.292/xc8\pic\include\proc\pic18f46k20.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC18F-K_DFP/1.13.292/xc8\pic\include\proc\pic18f46k20.h: 54: __asm("SSPMSK equ 0F77h");
 [; <" SSPMSK equ 0F77h ;# ">
@@ -497,6 +500,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;GPIO/LEDM.c: 18:     }
 }
 [e :U 305 ]
+"20
+[; ;GPIO/LEDM.c: 20:    WDGM_AlivenessIndication();
+[e ( _WDGM_AlivenessIndication ..  ]
 "23
 [; ;GPIO/LEDM.c: 23: }
 [e :UE 304 ]

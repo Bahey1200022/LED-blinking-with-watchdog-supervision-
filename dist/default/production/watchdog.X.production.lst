@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.46 build 20240104201356 
-                                                                                               Fri Jun 14 21:40:55 2024
+                                                                                               Mon Jun 17 21:30:45 2024
 
 Microchip MPLAB XC8 C Compiler v2.46 (Free license) build 20240104201356 Og1 
      1                           	processor	18F46K20
@@ -21,926 +21,978 @@ Microchip MPLAB XC8 C Compiler v2.46 (Free license) build 20240104201356 Og1
     15                           	psect	text7,global,reloc=2,class=CODE,delta=1
     16                           	psect	text8,global,reloc=2,class=CODE,delta=1
     17                           	psect	text9,global,reloc=2,class=CODE,delta=1
-    18                           	psect	smallconst,global,reloc=2,class=SMALLCONST,delta=1,noexec
-    19                           	psect	intsave_regs,global,class=BIGRAM,space=1,delta=1,noexec
-    20                           	psect	rparam,global,class=COMRAM,space=1,delta=1,noexec
-    21                           	psect	config,global,abs,ovrld,class=CONFIG,space=4,delta=1,noexec
-    22   000000                     
-    23                           ; Generated 12/10/2023 GMT
-    24                           ; 
-    25                           ; Copyright © 2023, Microchip Technology Inc. and its subsidiaries ("Microchip")
-    26                           ; All rights reserved.
-    27                           ; 
-    28                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
+    18                           	psect	text10,global,reloc=2,class=CODE,delta=1
+    19                           	psect	smallconst,global,reloc=2,class=SMALLCONST,delta=1,noexec
+    20                           	psect	intsave_regs,global,class=BIGRAM,space=1,delta=1,noexec
+    21                           	psect	rparam,global,class=COMRAM,space=1,delta=1,noexec
+    22                           	psect	config,global,abs,ovrld,class=CONFIG,space=4,delta=1,noexec
+    23   000000                     
+    24                           ; Generated 12/10/2023 GMT
+    25                           ; 
+    26                           ; Copyright © 2023, Microchip Technology Inc. and its subsidiaries ("Microchip")
+    27                           ; All rights reserved.
+    28                           ; 
+    29                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
       +                          ip").
-    29                           ; 
-    30                           ; Redistribution and use in source and binary forms, with or without modification, are
-    31                           ; permitted provided that the following conditions are met:
-    32                           ; 
-    33                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
+    30                           ; 
+    31                           ; Redistribution and use in source and binary forms, with or without modification, are
+    32                           ; permitted provided that the following conditions are met:
+    33                           ; 
+    34                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
       +                          t of
-    34                           ;        conditions and the following disclaimer.
-    35                           ; 
-    36                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
+    35                           ;        conditions and the following disclaimer.
+    36                           ; 
+    37                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
       +                          list
-    37                           ;        of conditions and the following disclaimer in the documentation and/or other
-    38                           ;        materials provided with the distribution. Publication is not required when
-    39                           ;        this file is used in an embedded application.
-    40                           ; 
-    41                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
+    38                           ;        of conditions and the following disclaimer in the documentation and/or other
+    39                           ;        materials provided with the distribution. Publication is not required when
+    40                           ;        this file is used in an embedded application.
+    41                           ; 
+    42                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
       +                          is
-    42                           ;        software without specific prior written permission.
-    43                           ; 
-    44                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
-    45                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
+    43                           ;        software without specific prior written permission.
+    44                           ; 
+    45                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+    46                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
       +                          OR
-    46                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
+    47                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
       +                          T,
-    47                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
-    48                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
-    49                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
+    48                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+    49                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
+    50                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
       +                          RICT
-    50                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
+    51                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
       +                          SE OF
-    51                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-    52                           ; 
+    52                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     53                           ; 
-    54                           ; Code-generator required, PIC18F46K20 Definitions
-    55                           ; 
-    56                           ; SFR Addresses
-    57   000000                     _LATDbits	set	3980
-    58   000000                     _TRISDbits	set	3989
-    59   000000                     _WDTCONbits	set	4049
-    60                           
-    61                           ; #config settings
-    62                           
-    63                           	psect	cinit
-    64   0011B0                     __pcinit:
-    65                           	callstack 0
-    66   0011B0                     start_initialization:
-    67                           	callstack 0
-    68   0011B0                     __initialization:
-    69                           	callstack 0
-    70                           
-    71                           ; Clear objects allocated to COMRAM (17 bytes)
-    72   0011B0  EE00  F001         	lfsr	0,__pbssCOMRAM
-    73   0011B4  0E11               	movlw	17
-    74   0011B6                     clear_0:
-    75   0011B6  6AEE               	clrf	postinc0,c
-    76   0011B8  06E8               	decf	wreg,f,c
-    77   0011BA  E1FD               	bnz	clear_0
-    78   0011BC                     end_of_initialization:
-    79                           	callstack 0
-    80   0011BC                     __end_of__initialization:
-    81                           	callstack 0
-    82   0011BC  0100               	movlb	0
-    83   0011BE  EF52  F008         	goto	_main	;jump to C main() function
-    84                           
-    85                           	psect	bssCOMRAM
-    86   000001                     __pbssCOMRAM:
-    87                           	callstack 0
-    88   000001                     _wgdmMainFuncTurn:
-    89                           	callstack 0
-    90   000001                     	ds	2
-    91   000003                     _lastCheckTime:
-    92                           	callstack 0
-    93   000003                     	ds	2
-    94   000005                     _mainFuncCalls:
-    95                           	callstack 0
-    96   000005                     	ds	2
-    97   000007                     _notifications:
-    98                           	callstack 0
-    99   000007                     	ds	2
-   100   000009                     _isr:
-   101                           	callstack 0
-   102   000009                     	ds	2
-   103   00000B                     _Calls:
-   104                           	callstack 0
-   105   00000B                     	ds	2
-   106   00000D                     _ledCounter:
-   107                           	callstack 0
-   108   00000D                     	ds	2
-   109   00000F                     _ledstate:
-   110                           	callstack 0
-   111   00000F                     	ds	2
-   112   000011                     _wdgmStatus:
-   113                           	callstack 0
-   114   000011                     	ds	1
-   115                           
-   116                           	psect	cstackCOMRAM
-   117   000012                     __pcstackCOMRAM:
-   118                           	callstack 0
-   119   000012                     GPIO_Write@PinData:
-   120                           	callstack 0
-   121                           
-   122                           ; 1 bytes @ 0x0
-   123   000012                     	ds	1
-   124   000013                     ??_main:
-   125   000013                     
-   126                           ; 1 bytes @ 0x1
-   127   000013                     	ds	2
-   128                           
-   129 ;;
-   130 ;;Main: autosize = 0, tempsize = 2, incstack = 0, save=0
-   131 ;;
-   132 ;; *************** function _main *****************
-   133 ;; Defined at:
-   134 ;;		line 18 in file "GPIO/main.c"
-   135 ;; Parameters:    Size  Location     Type
-   136 ;;		None
-   137 ;; Auto vars:     Size  Location     Type
-   138 ;;		None
-   139 ;; Return value:  Size  Location     Type
-   140 ;;                  2   22[None  ] int 
-   141 ;; Registers used:
-   142 ;;		wreg, status,2, status,0, cstack
-   143 ;; Tracked objects:
-   144 ;;		On entry : 0/0
-   145 ;;		On exit  : 0/0
-   146 ;;		Unchanged: 0/0
-   147 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+    54                           ; 
+    55                           ; Code-generator required, PIC18F46K20 Definitions
+    56                           ; 
+    57                           ; SFR Addresses
+    58   000000                     _LATDbits	set	3980
+    59   000000                     _TRISDbits	set	3989
+    60   000000                     _WDTCONbits	set	4049
+    61                           
+    62                           ; #config settings
+    63                           
+    64                           	psect	cinit
+    65   0011B4                     __pcinit:
+    66                           	callstack 0
+    67   0011B4                     start_initialization:
+    68                           	callstack 0
+    69   0011B4                     __initialization:
+    70                           	callstack 0
+    71                           
+    72                           ; Clear objects allocated to COMRAM (17 bytes)
+    73   0011B4  EE00  F001         	lfsr	0,__pbssCOMRAM
+    74   0011B8  0E11               	movlw	17
+    75   0011BA                     clear_0:
+    76   0011BA  6AEE               	clrf	postinc0,c
+    77   0011BC  06E8               	decf	wreg,f,c
+    78   0011BE  E1FD               	bnz	clear_0
+    79   0011C0                     end_of_initialization:
+    80                           	callstack 0
+    81   0011C0                     __end_of__initialization:
+    82                           	callstack 0
+    83   0011C0  0100               	movlb	0
+    84   0011C2  EF52  F008         	goto	_main	;jump to C main() function
+    85                           
+    86                           	psect	bssCOMRAM
+    87   000001                     __pbssCOMRAM:
+    88                           	callstack 0
+    89   000001                     _wgdmMainFuncTurn:
+    90                           	callstack 0
+    91   000001                     	ds	2
+    92   000003                     _lastCheckTime:
+    93                           	callstack 0
+    94   000003                     	ds	2
+    95   000005                     _mainFuncCalls:
+    96                           	callstack 0
+    97   000005                     	ds	2
+    98   000007                     _notifications:
+    99                           	callstack 0
+   100   000007                     	ds	2
+   101   000009                     _isr:
+   102                           	callstack 0
+   103   000009                     	ds	2
+   104   00000B                     _Calls:
+   105                           	callstack 0
+   106   00000B                     	ds	2
+   107   00000D                     _ledCounter:
+   108                           	callstack 0
+   109   00000D                     	ds	2
+   110   00000F                     _ledstate:
+   111                           	callstack 0
+   112   00000F                     	ds	2
+   113   000011                     _wdgmStatus:
+   114                           	callstack 0
+   115   000011                     	ds	1
+   116                           
+   117                           	psect	cstackCOMRAM
+   118   000012                     __pcstackCOMRAM:
+   119                           	callstack 0
+   120   000012                     GPIO_Write@PinData:
+   121                           	callstack 0
+   122                           
+   123                           ; 1 bytes @ 0x0
+   124   000012                     	ds	1
+   125   000013                     ??_main:
+   126   000013                     
+   127                           ; 1 bytes @ 0x1
+   128   000013                     	ds	2
+   129                           
+   130 ;;
+   131 ;;Main: autosize = 0, tempsize = 2, incstack = 0, save=0
+   132 ;;
+   133 ;; *************** function _main *****************
+   134 ;; Defined at:
+   135 ;;		line 18 in file "GPIO/main.c"
+   136 ;; Parameters:    Size  Location     Type
+   137 ;;		None
+   138 ;; Auto vars:     Size  Location     Type
+   139 ;;		None
+   140 ;; Return value:  Size  Location     Type
+   141 ;;                  2   22[None  ] int 
+   142 ;; Registers used:
+   143 ;;		wreg, status,2, status,0, cstack
+   144 ;; Tracked objects:
+   145 ;;		On entry : 0/0
+   146 ;;		On exit  : 0/0
+   147 ;;		Unchanged: 0/0
+   148 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
       +1  BANK12  BANK13  BANK14  BANK15
-   148 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+   149 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   149 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+   150 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   150 ;;      Temps:          2       0       0       0       0       0       0       0       0       0       0       0       
+   151 ;;      Temps:          2       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   151 ;;      Totals:         2       0       0       0       0       0       0       0       0       0       0       0       
+   152 ;;      Totals:         2       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   152 ;;Total ram usage:        2 bytes
-   153 ;; Hardware stack levels required when called: 2
-   154 ;; This function calls:
-   155 ;;		_LEDM_Init
-   156 ;;		_LEDM_Manage
-   157 ;;		_WDGDrv_Init
-   158 ;;		_WDGDrv_IsrNotification
-   159 ;;		_WDGM_Init
-   160 ;;		_WDGM_MainFunction
-   161 ;; This function is called by:
-   162 ;;		Startup code after reset
-   163 ;; This function uses a non-reentrant model
-   164 ;;
-   165                           
-   166                           	psect	text0
-   167   0010A4                     __ptext0:
-   168                           	callstack 0
-   169   0010A4                     _main:
-   170                           	callstack 29
-   171   0010A4                     
-   172                           ;GPIO/main.c: 19:         TRISDbits.TRISD1 = 0;
-   173   0010A4  9295               	bcf	149,1,c	;volatile
-   174                           
-   175                           ;GPIO/main.c: 20:         LATDbits.LATD1 = 1;
-   176   0010A6  828C               	bsf	140,1,c	;volatile
-   177   0010A8                     
-   178                           ;GPIO/main.c: 21:         _delay((unsigned long)((100)*(8000000/4000.0)));
-   179   0010A8  0E02               	movlw	2
-   180   0010AA  6E14               	movwf	(??_main+1)^0,c
-   181   0010AC  0E04               	movlw	4
-   182   0010AE  6E13               	movwf	??_main^0,c
-   183   0010B0  0EBA               	movlw	186
-   184   0010B2                     u217:
-   185   0010B2  2EE8               	decfsz	wreg,f,c
-   186   0010B4  D7FE               	bra	u217
-   187   0010B6  2E13               	decfsz	??_main^0,f,c
-   188   0010B8  D7FC               	bra	u217
-   189   0010BA  2E14               	decfsz	(??_main+1)^0,f,c
-   190   0010BC  D7FA               	bra	u217
-   191   0010BE  F000 F000          	nop2	
-   192   0010C2                     
-   193                           ;GPIO/main.c: 22:         LATDbits.LATD1 = 0;
-   194   0010C2  928C               	bcf	140,1,c	;volatile
-   195                           
-   196                           ;GPIO/main.c: 23:         _delay((unsigned long)((100)*(8000000/4000.0)));
-   197   0010C4  0E02               	movlw	2
-   198   0010C6  6E14               	movwf	(??_main+1)^0,c
-   199   0010C8  0E04               	movlw	4
-   200   0010CA  6E13               	movwf	??_main^0,c
-   201   0010CC  0EBA               	movlw	186
-   202   0010CE                     u227:
-   203   0010CE  2EE8               	decfsz	wreg,f,c
-   204   0010D0  D7FE               	bra	u227
-   205   0010D2  2E13               	decfsz	??_main^0,f,c
-   206   0010D4  D7FC               	bra	u227
-   207   0010D6  2E14               	decfsz	(??_main+1)^0,f,c
-   208   0010D8  D7FA               	bra	u227
-   209   0010DA  F000 F000          	nop2	
-   210   0010DE                     
-   211                           ;GPIO/main.c: 27:     LEDM_Init();
-   212   0010DE  ECE7  F008         	call	_LEDM_Init	;wreg free
-   213   0010E2                     
-   214                           ;GPIO/main.c: 28:     WDGDrv_Init();
-   215   0010E2  ECEF  F008         	call	_WDGDrv_Init	;wreg free
-   216   0010E6                     
-   217                           ;GPIO/main.c: 29:     WDGM_Init();
-   218   0010E6  ECCD  F008         	call	_WDGM_Init	;wreg free
-   219   0010EA                     l893:
-   220                           
-   221                           ;GPIO/main.c: 33:         LEDM_Manage();
-   222   0010EA  EC88  F008         	call	_LEDM_Manage	;wreg free
-   223   0010EE                     
-   224                           ;GPIO/main.c: 34:         WDGM_MainFunction();
-   225   0010EE  EC01  F008         	call	_WDGM_MainFunction	;wreg free
-   226   0010F2                     
-   227                           ;GPIO/main.c: 35:         WDGDrv_IsrNotification();
-   228   0010F2  ECB3  F008         	call	_WDGDrv_IsrNotification	;wreg free
-   229   0010F6                     
-   230                           ;GPIO/main.c: 36:         _delay((unsigned long)((10)*(8000000/4000.0)));
-   231   0010F6  0E1A               	movlw	26
-   232   0010F8  6E13               	movwf	??_main^0,c
-   233   0010FA  0EF8               	movlw	248
-   234   0010FC                     u237:
-   235   0010FC  2EE8               	decfsz	wreg,f,c
-   236   0010FE  D7FE               	bra	u237
-   237   001100  2E13               	decfsz	??_main^0,f,c
-   238   001102  D7FC               	bra	u237
-   239   001104  F000 F000          	nop2	
-   240   001108  EF75  F008         	goto	l893
-   241   00110C  EF00  F000         	goto	start
-   242   001110                     __end_of_main:
-   243                           	callstack 0
-   244                           
-   245 ;; *************** function _WDGM_MainFunction *****************
-   246 ;; Defined at:
-   247 ;;		line 17 in file "GPIO/WDGM.c"
-   248 ;; Parameters:    Size  Location     Type
-   249 ;;		None
-   250 ;; Auto vars:     Size  Location     Type
-   251 ;;		None
-   252 ;; Return value:  Size  Location     Type
-   253 ;;                  1    wreg      void 
-   254 ;; Registers used:
-   255 ;;		wreg, status,2, status,0
-   256 ;; Tracked objects:
-   257 ;;		On entry : 0/0
-   258 ;;		On exit  : 0/0
-   259 ;;		Unchanged: 0/0
-   260 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+   153 ;;Total ram usage:        2 bytes
+   154 ;; Hardware stack levels required when called: 2
+   155 ;; This function calls:
+   156 ;;		_LEDM_Init
+   157 ;;		_LEDM_Manage
+   158 ;;		_WDGDrv_Init
+   159 ;;		_WDGDrv_IsrNotification
+   160 ;;		_WDGM_Init
+   161 ;;		_WDGM_MainFunction
+   162 ;; This function is called by:
+   163 ;;		Startup code after reset
+   164 ;; This function uses a non-reentrant model
+   165 ;;
+   166                           
+   167                           	psect	text0
+   168   0010A4                     __ptext0:
+   169                           	callstack 0
+   170   0010A4                     _main:
+   171                           	callstack 29
+   172   0010A4                     
+   173                           ;GPIO/main.c: 19:         TRISDbits.TRISD1 = 0;
+   174   0010A4  9295               	bcf	149,1,c	;volatile
+   175                           
+   176                           ;GPIO/main.c: 20:         LATDbits.LATD1 = 1;
+   177   0010A6  828C               	bsf	140,1,c	;volatile
+   178   0010A8                     
+   179                           ;GPIO/main.c: 21:         _delay((unsigned long)((100)*(8000000/4000.0)));
+   180   0010A8  0E02               	movlw	2
+   181   0010AA  6E14               	movwf	(??_main+1)^0,c
+   182   0010AC  0E04               	movlw	4
+   183   0010AE  6E13               	movwf	??_main^0,c
+   184   0010B0  0EBA               	movlw	186
+   185   0010B2                     u217:
+   186   0010B2  2EE8               	decfsz	wreg,f,c
+   187   0010B4  D7FE               	bra	u217
+   188   0010B6  2E13               	decfsz	??_main^0,f,c
+   189   0010B8  D7FC               	bra	u217
+   190   0010BA  2E14               	decfsz	(??_main+1)^0,f,c
+   191   0010BC  D7FA               	bra	u217
+   192   0010BE  F000 F000          	nop2	
+   193   0010C2                     
+   194                           ;GPIO/main.c: 22:         LATDbits.LATD1 = 0;
+   195   0010C2  928C               	bcf	140,1,c	;volatile
+   196                           
+   197                           ;GPIO/main.c: 23:         _delay((unsigned long)((100)*(8000000/4000.0)));
+   198   0010C4  0E02               	movlw	2
+   199   0010C6  6E14               	movwf	(??_main+1)^0,c
+   200   0010C8  0E04               	movlw	4
+   201   0010CA  6E13               	movwf	??_main^0,c
+   202   0010CC  0EBA               	movlw	186
+   203   0010CE                     u227:
+   204   0010CE  2EE8               	decfsz	wreg,f,c
+   205   0010D0  D7FE               	bra	u227
+   206   0010D2  2E13               	decfsz	??_main^0,f,c
+   207   0010D4  D7FC               	bra	u227
+   208   0010D6  2E14               	decfsz	(??_main+1)^0,f,c
+   209   0010D8  D7FA               	bra	u227
+   210   0010DA  F000 F000          	nop2	
+   211   0010DE                     
+   212                           ;GPIO/main.c: 27:     LEDM_Init();
+   213   0010DE  ECEC  F008         	call	_LEDM_Init	;wreg free
+   214   0010E2                     
+   215                           ;GPIO/main.c: 28:     WDGDrv_Init();
+   216   0010E2  ECF4  F008         	call	_WDGDrv_Init	;wreg free
+   217   0010E6                     
+   218                           ;GPIO/main.c: 29:     WDGM_Init();
+   219   0010E6  ECCF  F008         	call	_WDGM_Init	;wreg free
+   220   0010EA                     l899:
+   221                           
+   222                           ;GPIO/main.c: 33:         LEDM_Manage();
+   223   0010EA  EC88  F008         	call	_LEDM_Manage	;wreg free
+   224   0010EE                     
+   225                           ;GPIO/main.c: 34:         WDGM_MainFunction();
+   226   0010EE  EC01  F008         	call	_WDGM_MainFunction	;wreg free
+   227   0010F2                     
+   228                           ;GPIO/main.c: 35:         WDGDrv_IsrNotification();
+   229   0010F2  ECB5  F008         	call	_WDGDrv_IsrNotification	;wreg free
+   230   0010F6                     
+   231                           ;GPIO/main.c: 36:         _delay((unsigned long)((10)*(8000000/4000.0)));
+   232   0010F6  0E1A               	movlw	26
+   233   0010F8  6E13               	movwf	??_main^0,c
+   234   0010FA  0EF8               	movlw	248
+   235   0010FC                     u237:
+   236   0010FC  2EE8               	decfsz	wreg,f,c
+   237   0010FE  D7FE               	bra	u237
+   238   001100  2E13               	decfsz	??_main^0,f,c
+   239   001102  D7FC               	bra	u237
+   240   001104  F000 F000          	nop2	
+   241   001108  EF75  F008         	goto	l899
+   242   00110C  EF00  F000         	goto	start
+   243   001110                     __end_of_main:
+   244                           	callstack 0
+   245                           
+   246 ;; *************** function _WDGM_MainFunction *****************
+   247 ;; Defined at:
+   248 ;;		line 17 in file "GPIO/WDGM.c"
+   249 ;; Parameters:    Size  Location     Type
+   250 ;;		None
+   251 ;; Auto vars:     Size  Location     Type
+   252 ;;		None
+   253 ;; Return value:  Size  Location     Type
+   254 ;;                  1    wreg      void 
+   255 ;; Registers used:
+   256 ;;		wreg, status,2, status,0
+   257 ;; Tracked objects:
+   258 ;;		On entry : 0/0
+   259 ;;		On exit  : 0/0
+   260 ;;		Unchanged: 0/0
+   261 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
       +1  BANK12  BANK13  BANK14  BANK15
-   261 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+   262 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   262 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+   263 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   263 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+   264 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   264 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+   265 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   265 ;;Total ram usage:        0 bytes
-   266 ;; Hardware stack levels used: 1
-   267 ;; This function calls:
-   268 ;;		Nothing
-   269 ;; This function is called by:
-   270 ;;		_main
-   271 ;; This function uses a non-reentrant model
-   272 ;;
-   273                           
-   274                           	psect	text1
-   275   001002                     __ptext1:
-   276                           	callstack 0
-   277   001002                     _WDGM_MainFunction:
-   278                           	callstack 30
-   279   001002                     
-   280                           ;GPIO/WDGM.c: 21:     Calls++;
-   281   001002  4A0B               	infsnz	_Calls^0,f,c	;volatile
-   282   001004  2A0C               	incf	(_Calls+1)^0,f,c	;volatile
-   283   001006                     
-   284                           ;GPIO/WDGM.c: 23:     if (++wgdmMainFuncTurn >= 2) {
-   285   001006  4A01               	infsnz	_wgdmMainFuncTurn^0,f,c	;volatile
-   286   001008  2A02               	incf	(_wgdmMainFuncTurn+1)^0,f,c	;volatile
-   287   00100A  BE02               	btfsc	(_wgdmMainFuncTurn+1)^0,7,c	;volatile
-   288   00100C  EF11  F008         	goto	u151
-   289   001010  5002               	movf	(_wgdmMainFuncTurn+1)^0,w,c	;volatile
-   290   001012  E109               	bnz	u150
-   291   001014  0E02               	movlw	2
-   292   001016  5C01               	subwf	_wgdmMainFuncTurn^0,w,c	;volatile
-   293   001018  A0D8               	btfss	status,0,c
-   294   00101A  EF11  F008         	goto	u151
-   295   00101E  EF13  F008         	goto	u150
-   296   001022                     u151:
-   297   001022  EF51  F008         	goto	l89
-   298   001026                     u150:
-   299   001026                     
-   300                           ;GPIO/WDGM.c: 24:         wgdmMainFuncTurn = 0;
-   301   001026  0E00               	movlw	0
-   302   001028  6E02               	movwf	(_wgdmMainFuncTurn+1)^0,c	;volatile
-   303   00102A  0E00               	movlw	0
-   304   00102C  6E01               	movwf	_wgdmMainFuncTurn^0,c	;volatile
-   305   00102E                     
-   306                           ;GPIO/WDGM.c: 27:         if (++lastCheckTime >= 5) {
-   307   00102E  4A03               	infsnz	_lastCheckTime^0,f,c	;volatile
-   308   001030  2A04               	incf	(_lastCheckTime+1)^0,f,c	;volatile
-   309   001032  BE04               	btfsc	(_lastCheckTime+1)^0,7,c	;volatile
-   310   001034  EF25  F008         	goto	u161
-   311   001038  5004               	movf	(_lastCheckTime+1)^0,w,c	;volatile
-   312   00103A  E109               	bnz	u160
-   313   00103C  0E05               	movlw	5
-   314   00103E  5C03               	subwf	_lastCheckTime^0,w,c	;volatile
-   315   001040  A0D8               	btfss	status,0,c
-   316   001042  EF25  F008         	goto	u161
-   317   001046  EF27  F008         	goto	u160
-   318   00104A                     u161:
-   319   00104A  EF51  F008         	goto	l89
-   320   00104E                     u160:
-   321   00104E                     
-   322                           ;GPIO/WDGM.c: 28:             lastCheckTime = 0;
-   323   00104E  0E00               	movlw	0
-   324   001050  6E04               	movwf	(_lastCheckTime+1)^0,c	;volatile
-   325   001052  0E00               	movlw	0
-   326   001054  6E03               	movwf	_lastCheckTime^0,c	;volatile
-   327   001056                     
-   328                           ;GPIO/WDGM.c: 31:             if (mainFuncCalls >= 8 && mainFuncCalls <= 12) {
-   329   001056  BE06               	btfsc	(_mainFuncCalls+1)^0,7,c	;volatile
-   330   001058  EF37  F008         	goto	u171
-   331   00105C  5006               	movf	(_mainFuncCalls+1)^0,w,c	;volatile
-   332   00105E  E109               	bnz	u170
-   333   001060  0E08               	movlw	8
-   334   001062  5C05               	subwf	_mainFuncCalls^0,w,c	;volatile
-   335   001064  A0D8               	btfss	status,0,c
-   336   001066  EF37  F008         	goto	u171
-   337   00106A  EF39  F008         	goto	u170
-   338   00106E                     u171:
-   339   00106E  EF4B  F008         	goto	l871
-   340   001072                     u170:
-   341   001072  BE06               	btfsc	(_mainFuncCalls+1)^0,7,c	;volatile
-   342   001074  EF47  F008         	goto	u180
-   343   001078  5006               	movf	(_mainFuncCalls+1)^0,w,c	;volatile
-   344   00107A  E107               	bnz	u181
-   345   00107C  0E0D               	movlw	13
-   346   00107E  5C05               	subwf	_mainFuncCalls^0,w,c	;volatile
-   347   001080  B0D8               	btfsc	status,0,c
-   348   001082  EF45  F008         	goto	u181
-   349   001086  EF47  F008         	goto	u180
-   350   00108A                     u181:
-   351   00108A  EF4B  F008         	goto	l871
-   352   00108E                     u180:
-   353   00108E                     
-   354                           ;GPIO/WDGM.c: 32:                 wdgmStatus = OK;
-   355   00108E  0E00               	movlw	0
-   356   001090  6E11               	movwf	_wdgmStatus^0,c
-   357                           
-   358                           ;GPIO/WDGM.c: 33:             } else {
-   359   001092  EF4D  F008         	goto	l88
-   360   001096                     l871:
-   361                           
-   362                           ;GPIO/WDGM.c: 34:                 wdgmStatus = NOK;
-   363   001096  0E01               	movlw	1
-   364   001098  6E11               	movwf	_wdgmStatus^0,c
-   365   00109A                     l88:
-   366                           
-   367                           ;GPIO/WDGM.c: 36:             mainFuncCalls = 0;
-   368   00109A  0E00               	movlw	0
-   369   00109C  6E06               	movwf	(_mainFuncCalls+1)^0,c	;volatile
-   370   00109E  0E00               	movlw	0
-   371   0010A0  6E05               	movwf	_mainFuncCalls^0,c	;volatile
-   372   0010A2                     l89:
-   373   0010A2  0012               	return		;funcret
-   374   0010A4                     __end_of_WDGM_MainFunction:
-   375                           	callstack 0
-   376                           
-   377 ;; *************** function _WDGM_Init *****************
-   378 ;; Defined at:
-   379 ;;		line 9 in file "GPIO/WDGM.c"
-   380 ;; Parameters:    Size  Location     Type
-   381 ;;		None
-   382 ;; Auto vars:     Size  Location     Type
-   383 ;;		None
-   384 ;; Return value:  Size  Location     Type
-   385 ;;                  1    wreg      void 
-   386 ;; Registers used:
-   387 ;;		wreg, status,2
-   388 ;; Tracked objects:
-   389 ;;		On entry : 0/0
-   390 ;;		On exit  : 0/0
-   391 ;;		Unchanged: 0/0
-   392 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+   266 ;;Total ram usage:        0 bytes
+   267 ;; Hardware stack levels used: 1
+   268 ;; This function calls:
+   269 ;;		Nothing
+   270 ;; This function is called by:
+   271 ;;		_main
+   272 ;; This function uses a non-reentrant model
+   273 ;;
+   274                           
+   275                           	psect	text1
+   276   001002                     __ptext1:
+   277                           	callstack 0
+   278   001002                     _WDGM_MainFunction:
+   279                           	callstack 30
+   280   001002                     
+   281                           ;GPIO/WDGM.c: 21:     Calls++;
+   282   001002  4A0B               	infsnz	_Calls^0,f,c	;volatile
+   283   001004  2A0C               	incf	(_Calls+1)^0,f,c	;volatile
+   284   001006                     
+   285                           ;GPIO/WDGM.c: 23:     if (++wgdmMainFuncTurn >= 2) {
+   286   001006  4A01               	infsnz	_wgdmMainFuncTurn^0,f,c	;volatile
+   287   001008  2A02               	incf	(_wgdmMainFuncTurn+1)^0,f,c	;volatile
+   288   00100A  BE02               	btfsc	(_wgdmMainFuncTurn+1)^0,7,c	;volatile
+   289   00100C  EF11  F008         	goto	u151
+   290   001010  5002               	movf	(_wgdmMainFuncTurn+1)^0,w,c	;volatile
+   291   001012  E109               	bnz	u150
+   292   001014  0E02               	movlw	2
+   293   001016  5C01               	subwf	_wgdmMainFuncTurn^0,w,c	;volatile
+   294   001018  A0D8               	btfss	status,0,c
+   295   00101A  EF11  F008         	goto	u151
+   296   00101E  EF13  F008         	goto	u150
+   297   001022                     u151:
+   298   001022  EF51  F008         	goto	l91
+   299   001026                     u150:
+   300   001026                     
+   301                           ;GPIO/WDGM.c: 24:         wgdmMainFuncTurn = 0;
+   302   001026  0E00               	movlw	0
+   303   001028  6E02               	movwf	(_wgdmMainFuncTurn+1)^0,c	;volatile
+   304   00102A  0E00               	movlw	0
+   305   00102C  6E01               	movwf	_wgdmMainFuncTurn^0,c	;volatile
+   306   00102E                     
+   307                           ;GPIO/WDGM.c: 27:         if (++lastCheckTime >= 5) {
+   308   00102E  4A03               	infsnz	_lastCheckTime^0,f,c	;volatile
+   309   001030  2A04               	incf	(_lastCheckTime+1)^0,f,c	;volatile
+   310   001032  BE04               	btfsc	(_lastCheckTime+1)^0,7,c	;volatile
+   311   001034  EF25  F008         	goto	u161
+   312   001038  5004               	movf	(_lastCheckTime+1)^0,w,c	;volatile
+   313   00103A  E109               	bnz	u160
+   314   00103C  0E05               	movlw	5
+   315   00103E  5C03               	subwf	_lastCheckTime^0,w,c	;volatile
+   316   001040  A0D8               	btfss	status,0,c
+   317   001042  EF25  F008         	goto	u161
+   318   001046  EF27  F008         	goto	u160
+   319   00104A                     u161:
+   320   00104A  EF51  F008         	goto	l91
+   321   00104E                     u160:
+   322   00104E                     
+   323                           ;GPIO/WDGM.c: 28:             lastCheckTime = 0;
+   324   00104E  0E00               	movlw	0
+   325   001050  6E04               	movwf	(_lastCheckTime+1)^0,c	;volatile
+   326   001052  0E00               	movlw	0
+   327   001054  6E03               	movwf	_lastCheckTime^0,c	;volatile
+   328   001056                     
+   329                           ;GPIO/WDGM.c: 31:             if (mainFuncCalls >= 8 && mainFuncCalls <= 12) {
+   330   001056  BE06               	btfsc	(_mainFuncCalls+1)^0,7,c	;volatile
+   331   001058  EF37  F008         	goto	u171
+   332   00105C  5006               	movf	(_mainFuncCalls+1)^0,w,c	;volatile
+   333   00105E  E109               	bnz	u170
+   334   001060  0E08               	movlw	8
+   335   001062  5C05               	subwf	_mainFuncCalls^0,w,c	;volatile
+   336   001064  A0D8               	btfss	status,0,c
+   337   001066  EF37  F008         	goto	u171
+   338   00106A  EF39  F008         	goto	u170
+   339   00106E                     u171:
+   340   00106E  EF4B  F008         	goto	l877
+   341   001072                     u170:
+   342   001072  BE06               	btfsc	(_mainFuncCalls+1)^0,7,c	;volatile
+   343   001074  EF47  F008         	goto	u180
+   344   001078  5006               	movf	(_mainFuncCalls+1)^0,w,c	;volatile
+   345   00107A  E107               	bnz	u181
+   346   00107C  0E0D               	movlw	13
+   347   00107E  5C05               	subwf	_mainFuncCalls^0,w,c	;volatile
+   348   001080  B0D8               	btfsc	status,0,c
+   349   001082  EF45  F008         	goto	u181
+   350   001086  EF47  F008         	goto	u180
+   351   00108A                     u181:
+   352   00108A  EF4B  F008         	goto	l877
+   353   00108E                     u180:
+   354   00108E                     
+   355                           ;GPIO/WDGM.c: 32:                 wdgmStatus = OK;
+   356   00108E  0E00               	movlw	0
+   357   001090  6E11               	movwf	_wdgmStatus^0,c
+   358                           
+   359                           ;GPIO/WDGM.c: 33:             } else {
+   360   001092  EF4D  F008         	goto	l90
+   361   001096                     l877:
+   362                           
+   363                           ;GPIO/WDGM.c: 34:                 wdgmStatus = NOK;
+   364   001096  0E01               	movlw	1
+   365   001098  6E11               	movwf	_wdgmStatus^0,c
+   366   00109A                     l90:
+   367                           
+   368                           ;GPIO/WDGM.c: 36:             mainFuncCalls = 0;
+   369   00109A  0E00               	movlw	0
+   370   00109C  6E06               	movwf	(_mainFuncCalls+1)^0,c	;volatile
+   371   00109E  0E00               	movlw	0
+   372   0010A0  6E05               	movwf	_mainFuncCalls^0,c	;volatile
+   373   0010A2                     l91:
+   374   0010A2  0012               	return		;funcret
+   375   0010A4                     __end_of_WDGM_MainFunction:
+   376                           	callstack 0
+   377                           
+   378 ;; *************** function _WDGM_Init *****************
+   379 ;; Defined at:
+   380 ;;		line 9 in file "GPIO/WDGM.c"
+   381 ;; Parameters:    Size  Location     Type
+   382 ;;		None
+   383 ;; Auto vars:     Size  Location     Type
+   384 ;;		None
+   385 ;; Return value:  Size  Location     Type
+   386 ;;                  1    wreg      void 
+   387 ;; Registers used:
+   388 ;;		wreg, status,2
+   389 ;; Tracked objects:
+   390 ;;		On entry : 0/0
+   391 ;;		On exit  : 0/0
+   392 ;;		Unchanged: 0/0
+   393 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
       +1  BANK12  BANK13  BANK14  BANK15
-   393 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+   394 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   394 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+   395 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   395 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+   396 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   396 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+   397 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   397 ;;Total ram usage:        0 bytes
-   398 ;; Hardware stack levels used: 1
-   399 ;; This function calls:
-   400 ;;		Nothing
-   401 ;; This function is called by:
-   402 ;;		_main
-   403 ;; This function uses a non-reentrant model
-   404 ;;
-   405                           
-   406                           	psect	text2
-   407   00119A                     __ptext2:
-   408                           	callstack 0
-   409   00119A                     _WDGM_Init:
-   410                           	callstack 30
-   411   00119A                     
-   412                           ;GPIO/WDGM.c: 11:     mainFuncCalls = 0;
-   413   00119A  0E00               	movlw	0
-   414   00119C  6E06               	movwf	(_mainFuncCalls+1)^0,c	;volatile
-   415   00119E  0E00               	movlw	0
-   416   0011A0  6E05               	movwf	_mainFuncCalls^0,c	;volatile
-   417                           
-   418                           ;GPIO/WDGM.c: 12:     lastCheckTime = 0;
-   419   0011A2  0E00               	movlw	0
-   420   0011A4  6E04               	movwf	(_lastCheckTime+1)^0,c	;volatile
-   421   0011A6  0E00               	movlw	0
-   422   0011A8  6E03               	movwf	_lastCheckTime^0,c	;volatile
-   423                           
-   424                           ;GPIO/WDGM.c: 13:     wdgmStatus = OK;
-   425   0011AA  0E00               	movlw	0
-   426   0011AC  6E11               	movwf	_wdgmStatus^0,c
-   427   0011AE  0012               	return		;funcret
-   428   0011B0                     __end_of_WDGM_Init:
-   429                           	callstack 0
-   430                           
-   431 ;; *************** function _WDGDrv_IsrNotification *****************
-   432 ;; Defined at:
-   433 ;;		line 21 in file "GPIO/WDGDRV.c"
-   434 ;; Parameters:    Size  Location     Type
-   435 ;;		None
-   436 ;; Auto vars:     Size  Location     Type
-   437 ;;		None
-   438 ;; Return value:  Size  Location     Type
-   439 ;;                  1    wreg      void 
-   440 ;; Registers used:
-   441 ;;		wreg, status,2, status,0, cstack
-   442 ;; Tracked objects:
-   443 ;;		On entry : 0/0
-   444 ;;		On exit  : 0/0
-   445 ;;		Unchanged: 0/0
-   446 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+   398 ;;Total ram usage:        0 bytes
+   399 ;; Hardware stack levels used: 1
+   400 ;; This function calls:
+   401 ;;		Nothing
+   402 ;; This function is called by:
+   403 ;;		_main
+   404 ;; This function uses a non-reentrant model
+   405 ;;
+   406                           
+   407                           	psect	text2
+   408   00119E                     __ptext2:
+   409                           	callstack 0
+   410   00119E                     _WDGM_Init:
+   411                           	callstack 30
+   412   00119E                     
+   413                           ;GPIO/WDGM.c: 11:     mainFuncCalls = 0;
+   414   00119E  0E00               	movlw	0
+   415   0011A0  6E06               	movwf	(_mainFuncCalls+1)^0,c	;volatile
+   416   0011A2  0E00               	movlw	0
+   417   0011A4  6E05               	movwf	_mainFuncCalls^0,c	;volatile
+   418                           
+   419                           ;GPIO/WDGM.c: 12:     lastCheckTime = 0;
+   420   0011A6  0E00               	movlw	0
+   421   0011A8  6E04               	movwf	(_lastCheckTime+1)^0,c	;volatile
+   422   0011AA  0E00               	movlw	0
+   423   0011AC  6E03               	movwf	_lastCheckTime^0,c	;volatile
+   424                           
+   425                           ;GPIO/WDGM.c: 13:     wdgmStatus = OK;
+   426   0011AE  0E00               	movlw	0
+   427   0011B0  6E11               	movwf	_wdgmStatus^0,c
+   428   0011B2  0012               	return		;funcret
+   429   0011B4                     __end_of_WDGM_Init:
+   430                           	callstack 0
+   431                           
+   432 ;; *************** function _WDGDrv_IsrNotification *****************
+   433 ;; Defined at:
+   434 ;;		line 21 in file "GPIO/WDGDRV.c"
+   435 ;; Parameters:    Size  Location     Type
+   436 ;;		None
+   437 ;; Auto vars:     Size  Location     Type
+   438 ;;		None
+   439 ;; Return value:  Size  Location     Type
+   440 ;;                  1    wreg      void 
+   441 ;; Registers used:
+   442 ;;		wreg, status,2, status,0, cstack
+   443 ;; Tracked objects:
+   444 ;;		On entry : 0/0
+   445 ;;		On exit  : 0/0
+   446 ;;		Unchanged: 0/0
+   447 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
       +1  BANK12  BANK13  BANK14  BANK15
-   447 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+   448 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   448 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+   449 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   449 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+   450 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   450 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+   451 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   451 ;;Total ram usage:        0 bytes
-   452 ;; Hardware stack levels used: 1
-   453 ;; Hardware stack levels required when called: 1
-   454 ;; This function calls:
-   455 ;;		_WDGM_PovideSuppervisionStatus
-   456 ;; This function is called by:
-   457 ;;		_main
-   458 ;; This function uses a non-reentrant model
-   459 ;;
-   460                           
-   461                           	psect	text3
-   462   001166                     __ptext3:
-   463                           	callstack 0
-   464   001166                     _WDGDrv_IsrNotification:
-   465                           	callstack 29
-   466   001166                     
-   467                           ;GPIO/WDGDRV.c: 27: 
-   468   001166  4A09               	infsnz	_isr^0,f,c	;volatile
-   469   001168  2A0A               	incf	(_isr+1)^0,f,c	;volatile
-   470   00116A                     
-   471                           ;GPIO/WDGDRV.c: 30: 
-   472   00116A  ECED  F008         	call	_WDGM_PovideSuppervisionStatus	;wreg free
-   473   00116E  0900               	iorlw	0
-   474   001170  A4D8               	btfss	status,2,c
-   475   001172  EFBD  F008         	goto	u191
-   476   001176  EFBF  F008         	goto	u190
-   477   00117A                     u191:
-   478   00117A  EFCC  F008         	goto	l69
-   479   00117E                     u190:
-   480   00117E  5009               	movf	_isr^0,w,c	;volatile
-   481   001180  180B               	xorwf	_Calls^0,w,c	;volatile
-   482   001182  E107               	bnz	u201
-   483   001184  500A               	movf	(_isr+1)^0,w,c	;volatile
-   484   001186  180C               	xorwf	(_Calls+1)^0,w,c	;volatile
-   485   001188  A4D8               	btfss	status,2,c
-   486   00118A  EFC9  F008         	goto	u201
-   487   00118E  EFCB  F008         	goto	u200
-   488   001192                     u201:
-   489   001192  EFCC  F008         	goto	l69
-   490   001196                     u200:
-   491   001196  0004               	clrwdt		;# 
-   492   001198                     l69:
-   493   001198  0012               	return		;funcret
-   494   00119A                     __end_of_WDGDrv_IsrNotification:
-   495                           	callstack 0
-   496                           
-   497 ;; *************** function _WDGM_PovideSuppervisionStatus *****************
-   498 ;; Defined at:
-   499 ;;		line 41 in file "GPIO/WDGM.c"
-   500 ;; Parameters:    Size  Location     Type
-   501 ;;		None
-   502 ;; Auto vars:     Size  Location     Type
-   503 ;;		None
-   504 ;; Return value:  Size  Location     Type
-   505 ;;                  1    wreg      enum E2735
-   506 ;; Registers used:
-   507 ;;		wreg, status,2
-   508 ;; Tracked objects:
-   509 ;;		On entry : 0/0
-   510 ;;		On exit  : 0/0
-   511 ;;		Unchanged: 0/0
-   512 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+   452 ;;Total ram usage:        0 bytes
+   453 ;; Hardware stack levels used: 1
+   454 ;; Hardware stack levels required when called: 1
+   455 ;; This function calls:
+   456 ;;		_WDGM_PovideSuppervisionStatus
+   457 ;; This function is called by:
+   458 ;;		_main
+   459 ;; This function uses a non-reentrant model
+   460 ;;
+   461                           
+   462                           	psect	text3
+   463   00116A                     __ptext3:
+   464                           	callstack 0
+   465   00116A                     _WDGDrv_IsrNotification:
+   466                           	callstack 29
+   467   00116A                     
+   468                           ;GPIO/WDGDRV.c: 27: 
+   469   00116A  4A09               	infsnz	_isr^0,f,c	;volatile
+   470   00116C  2A0A               	incf	(_isr+1)^0,f,c	;volatile
+   471   00116E                     
+   472                           ;GPIO/WDGDRV.c: 30: 
+   473   00116E  ECF2  F008         	call	_WDGM_PovideSuppervisionStatus	;wreg free
+   474   001172  0900               	iorlw	0
+   475   001174  A4D8               	btfss	status,2,c
+   476   001176  EFBF  F008         	goto	u191
+   477   00117A  EFC1  F008         	goto	u190
+   478   00117E                     u191:
+   479   00117E  EFCE  F008         	goto	l71
+   480   001182                     u190:
+   481   001182  5009               	movf	_isr^0,w,c	;volatile
+   482   001184  180B               	xorwf	_Calls^0,w,c	;volatile
+   483   001186  E107               	bnz	u201
+   484   001188  500A               	movf	(_isr+1)^0,w,c	;volatile
+   485   00118A  180C               	xorwf	(_Calls+1)^0,w,c	;volatile
+   486   00118C  A4D8               	btfss	status,2,c
+   487   00118E  EFCB  F008         	goto	u201
+   488   001192  EFCD  F008         	goto	u200
+   489   001196                     u201:
+   490   001196  EFCE  F008         	goto	l71
+   491   00119A                     u200:
+   492   00119A  0004               	clrwdt		;# 
+   493   00119C                     l71:
+   494   00119C  0012               	return		;funcret
+   495   00119E                     __end_of_WDGDrv_IsrNotification:
+   496                           	callstack 0
+   497                           
+   498 ;; *************** function _WDGM_PovideSuppervisionStatus *****************
+   499 ;; Defined at:
+   500 ;;		line 41 in file "GPIO/WDGM.c"
+   501 ;; Parameters:    Size  Location     Type
+   502 ;;		None
+   503 ;; Auto vars:     Size  Location     Type
+   504 ;;		None
+   505 ;; Return value:  Size  Location     Type
+   506 ;;                  1    wreg      enum E2735
+   507 ;; Registers used:
+   508 ;;		wreg, status,2
+   509 ;; Tracked objects:
+   510 ;;		On entry : 0/0
+   511 ;;		On exit  : 0/0
+   512 ;;		Unchanged: 0/0
+   513 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
       +1  BANK12  BANK13  BANK14  BANK15
-   513 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+   514 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   514 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+   515 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   515 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+   516 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   516 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+   517 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   517 ;;Total ram usage:        0 bytes
-   518 ;; Hardware stack levels used: 1
-   519 ;; This function calls:
-   520 ;;		Nothing
-   521 ;; This function is called by:
-   522 ;;		_WDGDrv_IsrNotification
-   523 ;; This function uses a non-reentrant model
-   524 ;;
-   525                           
-   526                           	psect	text4
-   527   0011DA                     __ptext4:
-   528                           	callstack 0
-   529   0011DA                     _WDGM_PovideSuppervisionStatus:
-   530                           	callstack 29
-   531   0011DA                     
-   532                           ;GPIO/WDGM.c: 43:     return wdgmStatus;
-   533   0011DA  5011               	movf	_wdgmStatus^0,w,c
-   534   0011DC  0012               	return		;funcret
-   535   0011DE                     __end_of_WDGM_PovideSuppervisionStatus:
-   536                           	callstack 0
-   537                           
-   538 ;; *************** function _WDGDrv_Init *****************
-   539 ;; Defined at:
-   540 ;;		line 8 in file "GPIO/WDGDRV.c"
-   541 ;; Parameters:    Size  Location     Type
-   542 ;;		None
-   543 ;; Auto vars:     Size  Location     Type
-   544 ;;		None
-   545 ;; Return value:  Size  Location     Type
-   546 ;;                  1    wreg      void 
-   547 ;; Registers used:
-   548 ;;		None
-   549 ;; Tracked objects:
-   550 ;;		On entry : 0/0
-   551 ;;		On exit  : 0/0
-   552 ;;		Unchanged: 0/0
-   553 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+   518 ;;Total ram usage:        0 bytes
+   519 ;; Hardware stack levels used: 1
+   520 ;; This function calls:
+   521 ;;		Nothing
+   522 ;; This function is called by:
+   523 ;;		_WDGDrv_IsrNotification
+   524 ;; This function uses a non-reentrant model
+   525 ;;
+   526                           
+   527                           	psect	text4
+   528   0011E4                     __ptext4:
+   529                           	callstack 0
+   530   0011E4                     _WDGM_PovideSuppervisionStatus:
+   531                           	callstack 29
+   532   0011E4                     
+   533                           ;GPIO/WDGM.c: 43:     return wdgmStatus;
+   534   0011E4  5011               	movf	_wdgmStatus^0,w,c
+   535   0011E6  0012               	return		;funcret
+   536   0011E8                     __end_of_WDGM_PovideSuppervisionStatus:
+   537                           	callstack 0
+   538                           
+   539 ;; *************** function _WDGDrv_Init *****************
+   540 ;; Defined at:
+   541 ;;		line 8 in file "GPIO/WDGDRV.c"
+   542 ;; Parameters:    Size  Location     Type
+   543 ;;		None
+   544 ;; Auto vars:     Size  Location     Type
+   545 ;;		None
+   546 ;; Return value:  Size  Location     Type
+   547 ;;                  1    wreg      void 
+   548 ;; Registers used:
+   549 ;;		None
+   550 ;; Tracked objects:
+   551 ;;		On entry : 0/0
+   552 ;;		On exit  : 0/0
+   553 ;;		Unchanged: 0/0
+   554 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
       +1  BANK12  BANK13  BANK14  BANK15
-   554 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+   555 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   555 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+   556 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   556 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+   557 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   557 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+   558 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   558 ;;Total ram usage:        0 bytes
-   559 ;; Hardware stack levels used: 1
-   560 ;; This function calls:
-   561 ;;		Nothing
-   562 ;; This function is called by:
-   563 ;;		_main
-   564 ;; This function uses a non-reentrant model
-   565 ;;
-   566                           
-   567                           	psect	text5
-   568   0011DE                     __ptext5:
-   569                           	callstack 0
-   570   0011DE                     _WDGDrv_Init:
-   571                           	callstack 30
-   572   0011DE                     
-   573                           ;GPIO/WDGDRV.c: 14:     isr++;
-   574   0011DE  80D1               	bsf	209,0,c	;volatile
-   575   0011E0  0012               	return		;funcret
-   576   0011E2                     __end_of_WDGDrv_Init:
-   577                           	callstack 0
-   578                           
-   579 ;; *************** function _LEDM_Manage *****************
-   580 ;; Defined at:
-   581 ;;		line 11 in file "GPIO/LEDM.c"
-   582 ;; Parameters:    Size  Location     Type
-   583 ;;		None
-   584 ;; Auto vars:     Size  Location     Type
-   585 ;;		None
-   586 ;; Return value:  Size  Location     Type
-   587 ;;                  1    wreg      void 
-   588 ;; Registers used:
-   589 ;;		wreg, status,2, status,0, cstack
-   590 ;; Tracked objects:
-   591 ;;		On entry : 0/0
-   592 ;;		On exit  : 0/0
-   593 ;;		Unchanged: 0/0
-   594 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+   559 ;;Total ram usage:        0 bytes
+   560 ;; Hardware stack levels used: 1
+   561 ;; This function calls:
+   562 ;;		Nothing
+   563 ;; This function is called by:
+   564 ;;		_main
+   565 ;; This function uses a non-reentrant model
+   566 ;;
+   567                           
+   568                           	psect	text5
+   569   0011E8                     __ptext5:
+   570                           	callstack 0
+   571   0011E8                     _WDGDrv_Init:
+   572                           	callstack 30
+   573   0011E8                     
+   574                           ;GPIO/WDGDRV.c: 14:     isr++;
+   575   0011E8  80D1               	bsf	209,0,c	;volatile
+   576   0011EA  0012               	return		;funcret
+   577   0011EC                     __end_of_WDGDrv_Init:
+   578                           	callstack 0
+   579                           
+   580 ;; *************** function _LEDM_Manage *****************
+   581 ;; Defined at:
+   582 ;;		line 11 in file "GPIO/LEDM.c"
+   583 ;; Parameters:    Size  Location     Type
+   584 ;;		None
+   585 ;; Auto vars:     Size  Location     Type
+   586 ;;		None
+   587 ;; Return value:  Size  Location     Type
+   588 ;;                  1    wreg      void 
+   589 ;; Registers used:
+   590 ;;		wreg, status,2, status,0, cstack
+   591 ;; Tracked objects:
+   592 ;;		On entry : 0/0
+   593 ;;		On exit  : 0/0
+   594 ;;		Unchanged: 0/0
+   595 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
       +1  BANK12  BANK13  BANK14  BANK15
-   595 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+   596 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   596 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+   597 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   597 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+   598 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   598 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+   599 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   599 ;;Total ram usage:        0 bytes
-   600 ;; Hardware stack levels used: 1
-   601 ;; Hardware stack levels required when called: 1
-   602 ;; This function calls:
-   603 ;;		_GPIO_Write
-   604 ;; This function is called by:
-   605 ;;		_main
-   606 ;; This function uses a non-reentrant model
-   607 ;;
-   608                           
-   609                           	psect	text6
-   610   001110                     __ptext6:
-   611                           	callstack 0
-   612   001110                     _LEDM_Manage:
-   613                           	callstack 29
-   614   001110                     
-   615                           ;GPIO/LEDM.c: 12:     ledCounter=ledCounter+10;
-   616   001110  0E0A               	movlw	10
-   617   001112  240D               	addwf	_ledCounter^0,w,c	;volatile
-   618   001114  6E0D               	movwf	_ledCounter^0,c	;volatile
-   619   001116  0E00               	movlw	0
-   620   001118  200E               	addwfc	(_ledCounter+1)^0,w,c	;volatile
-   621   00111A  6E0E               	movwf	(_ledCounter+1)^0,c	;volatile
-   622                           
-   623                           ;GPIO/LEDM.c: 14:     if (ledCounter>500){
-   624   00111C  BE0E               	btfsc	(_ledCounter+1)^0,7,c	;volatile
-   625   00111E  EF9A  F008         	goto	u121
-   626   001122  0EF5               	movlw	245
-   627   001124  5C0D               	subwf	_ledCounter^0,w,c	;volatile
-   628   001126  0E01               	movlw	1
-   629   001128  580E               	subwfb	(_ledCounter+1)^0,w,c	;volatile
-   630   00112A  A0D8               	btfss	status,0,c
-   631   00112C  EF9A  F008         	goto	u121
-   632   001130  EF9C  F008         	goto	u120
-   633   001134                     u121:
-   634   001134  EFB2  F008         	goto	l51
-   635   001138                     u120:
-   636   001138                     
-   637                           ;GPIO/LEDM.c: 15:         ledstate=!ledstate;
-   638   001138  500F               	movf	_ledstate^0,w,c	;volatile
-   639   00113A  1010               	iorwf	(_ledstate+1)^0,w,c	;volatile
-   640   00113C  B4D8               	btfsc	status,2,c
-   641   00113E  EFA3  F008         	goto	u131
-   642   001142  EFA6  F008         	goto	u130
-   643   001146                     u131:
-   644   001146  0E01               	movlw	1
-   645   001148  EFA7  F008         	goto	u140
-   646   00114C                     u130:
-   647   00114C  0E00               	movlw	0
-   648   00114E                     u140:
-   649   00114E  6E0F               	movwf	_ledstate^0,c	;volatile
-   650   001150  6A10               	clrf	(_ledstate+1)^0,c	;volatile
-   651   001152                     
-   652                           ;GPIO/LEDM.c: 16:         GPIO_Write(5,ledstate);
-   653   001152  C00F  F012         	movff	_ledstate,GPIO_Write@PinData	;volatile
-   654   001156  0E05               	movlw	5
-   655   001158  ECE1  F008         	call	_GPIO_Write
-   656   00115C                     
-   657                           ;GPIO/LEDM.c: 17:         ledCounter=0;
-   658   00115C  0E00               	movlw	0
-   659   00115E  6E0E               	movwf	(_ledCounter+1)^0,c	;volatile
-   660   001160  0E00               	movlw	0
-   661   001162  6E0D               	movwf	_ledCounter^0,c	;volatile
-   662   001164                     l51:
-   663   001164  0012               	return		;funcret
-   664   001166                     __end_of_LEDM_Manage:
-   665                           	callstack 0
-   666                           
-   667 ;; *************** function _GPIO_Write *****************
-   668 ;; Defined at:
-   669 ;;		line 9 in file "GPIO/GPIO.c"
-   670 ;; Parameters:    Size  Location     Type
-   671 ;;  PinId           1    wreg     unsigned char 
-   672 ;;  PinData         1    0[COMRAM] unsigned char 
-   673 ;; Auto vars:     Size  Location     Type
-   674 ;;  PinId           1    0[COMRAM] unsigned char 
-   675 ;; Return value:  Size  Location     Type
-   676 ;;                  1    wreg      void 
-   677 ;; Registers used:
-   678 ;;		wreg
-   679 ;; Tracked objects:
-   680 ;;		On entry : 0/0
-   681 ;;		On exit  : 0/0
-   682 ;;		Unchanged: 0/0
-   683 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+   600 ;;Total ram usage:        0 bytes
+   601 ;; Hardware stack levels used: 1
+   602 ;; Hardware stack levels required when called: 1
+   603 ;; This function calls:
+   604 ;;		_GPIO_Write
+   605 ;;		_WDGM_AlivenessIndication
+   606 ;; This function is called by:
+   607 ;;		_main
+   608 ;; This function uses a non-reentrant model
+   609 ;;
+   610                           
+   611                           	psect	text6
+   612   001110                     __ptext6:
+   613                           	callstack 0
+   614   001110                     _LEDM_Manage:
+   615                           	callstack 29
+   616   001110                     
+   617                           ;GPIO/LEDM.c: 12:     ledCounter=ledCounter+10;
+   618   001110  0E0A               	movlw	10
+   619   001112  240D               	addwf	_ledCounter^0,w,c	;volatile
+   620   001114  6E0D               	movwf	_ledCounter^0,c	;volatile
+   621   001116  0E00               	movlw	0
+   622   001118  200E               	addwfc	(_ledCounter+1)^0,w,c	;volatile
+   623   00111A  6E0E               	movwf	(_ledCounter+1)^0,c	;volatile
+   624                           
+   625                           ;GPIO/LEDM.c: 14:     if (ledCounter>500){
+   626   00111C  BE0E               	btfsc	(_ledCounter+1)^0,7,c	;volatile
+   627   00111E  EF9A  F008         	goto	u121
+   628   001122  0EF5               	movlw	245
+   629   001124  5C0D               	subwf	_ledCounter^0,w,c	;volatile
+   630   001126  0E01               	movlw	1
+   631   001128  580E               	subwfb	(_ledCounter+1)^0,w,c	;volatile
+   632   00112A  A0D8               	btfss	status,0,c
+   633   00112C  EF9A  F008         	goto	u121
+   634   001130  EF9C  F008         	goto	u120
+   635   001134                     u121:
+   636   001134  EFB2  F008         	goto	l859
+   637   001138                     u120:
+   638   001138                     
+   639                           ;GPIO/LEDM.c: 15:         ledstate=!ledstate;
+   640   001138  500F               	movf	_ledstate^0,w,c	;volatile
+   641   00113A  1010               	iorwf	(_ledstate+1)^0,w,c	;volatile
+   642   00113C  B4D8               	btfsc	status,2,c
+   643   00113E  EFA3  F008         	goto	u131
+   644   001142  EFA6  F008         	goto	u130
+   645   001146                     u131:
+   646   001146  0E01               	movlw	1
+   647   001148  EFA7  F008         	goto	u140
+   648   00114C                     u130:
+   649   00114C  0E00               	movlw	0
+   650   00114E                     u140:
+   651   00114E  6E0F               	movwf	_ledstate^0,c	;volatile
+   652   001150  6A10               	clrf	(_ledstate+1)^0,c	;volatile
+   653   001152                     
+   654                           ;GPIO/LEDM.c: 16:         GPIO_Write(5,ledstate);
+   655   001152  C00F  F012         	movff	_ledstate,GPIO_Write@PinData	;volatile
+   656   001156  0E05               	movlw	5
+   657   001158  ECE3  F008         	call	_GPIO_Write
+   658   00115C                     
+   659                           ;GPIO/LEDM.c: 17:         ledCounter=0;
+   660   00115C  0E00               	movlw	0
+   661   00115E  6E0E               	movwf	(_ledCounter+1)^0,c	;volatile
+   662   001160  0E00               	movlw	0
+   663   001162  6E0D               	movwf	_ledCounter^0,c	;volatile
+   664   001164                     l859:
+   665                           
+   666                           ;GPIO/LEDM.c: 20:    WDGM_AlivenessIndication();
+   667   001164  ECE9  F008         	call	_WDGM_AlivenessIndication	;wreg free
+   668   001168  0012               	return		;funcret
+   669   00116A                     __end_of_LEDM_Manage:
+   670                           	callstack 0
+   671                           
+   672 ;; *************** function _WDGM_AlivenessIndication *****************
+   673 ;; Defined at:
+   674 ;;		line 46 in file "GPIO/WDGM.c"
+   675 ;; Parameters:    Size  Location     Type
+   676 ;;		None
+   677 ;; Auto vars:     Size  Location     Type
+   678 ;;		None
+   679 ;; Return value:  Size  Location     Type
+   680 ;;                  1    wreg      void 
+   681 ;; Registers used:
+   682 ;;		status,2, status,0
+   683 ;; Tracked objects:
+   684 ;;		On entry : 0/0
+   685 ;;		On exit  : 0/0
+   686 ;;		Unchanged: 0/0
+   687 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
       +1  BANK12  BANK13  BANK14  BANK15
-   684 ;;      Params:         1       0       0       0       0       0       0       0       0       0       0       0       
+   688 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   685 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+   689 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   686 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+   690 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   687 ;;      Totals:         1       0       0       0       0       0       0       0       0       0       0       0       
+   691 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   688 ;;Total ram usage:        1 bytes
-   689 ;; Hardware stack levels used: 1
-   690 ;; This function calls:
-   691 ;;		Nothing
-   692 ;; This function is called by:
-   693 ;;		_LEDM_Manage
-   694 ;; This function uses a non-reentrant model
-   695 ;;
-   696                           
-   697                           	psect	text7
-   698   0011C2                     __ptext7:
-   699                           	callstack 0
-   700   0011C2                     _GPIO_Write:
-   701                           	callstack 29
-   702   0011C2                     
-   703                           ;GPIO/GPIO.c: 11:    LATDbits.LATD5 = PinData;
-   704   0011C2  B012               	btfsc	GPIO_Write@PinData^0,0,c
-   705   0011C4  D002               	bra	u115
-   706   0011C6  9A8C               	bcf	140,5,c	;volatile
-   707   0011C8  D001               	bra	u116
-   708   0011CA                     u115:
-   709   0011CA  8A8C               	bsf	140,5,c	;volatile
-   710   0011CC                     u116:
-   711   0011CC  0012               	return		;funcret
-   712   0011CE                     __end_of_GPIO_Write:
-   713                           	callstack 0
-   714                           
-   715 ;; *************** function _LEDM_Init *****************
-   716 ;; Defined at:
-   717 ;;		line 5 in file "GPIO/LEDM.c"
-   718 ;; Parameters:    Size  Location     Type
-   719 ;;		None
+   692 ;;Total ram usage:        0 bytes
+   693 ;; Hardware stack levels used: 1
+   694 ;; This function calls:
+   695 ;;		Nothing
+   696 ;; This function is called by:
+   697 ;;		_LEDM_Manage
+   698 ;; This function uses a non-reentrant model
+   699 ;;
+   700                           
+   701                           	psect	text7
+   702   0011D2                     __ptext7:
+   703                           	callstack 0
+   704   0011D2                     _WDGM_AlivenessIndication:
+   705                           	callstack 29
+   706   0011D2                     
+   707                           ;GPIO/WDGM.c: 49:     mainFuncCalls++;
+   708   0011D2  4A05               	infsnz	_mainFuncCalls^0,f,c	;volatile
+   709   0011D4  2A06               	incf	(_mainFuncCalls+1)^0,f,c	;volatile
+   710   0011D6  0012               	return		;funcret
+   711   0011D8                     __end_of_WDGM_AlivenessIndication:
+   712                           	callstack 0
+   713                           
+   714 ;; *************** function _GPIO_Write *****************
+   715 ;; Defined at:
+   716 ;;		line 9 in file "GPIO/GPIO.c"
+   717 ;; Parameters:    Size  Location     Type
+   718 ;;  PinId           1    wreg     unsigned char 
+   719 ;;  PinData         1    0[COMRAM] unsigned char 
    720 ;; Auto vars:     Size  Location     Type
-   721 ;;		None
+   721 ;;  PinId           1    0[COMRAM] unsigned char 
    722 ;; Return value:  Size  Location     Type
    723 ;;                  1    wreg      void 
    724 ;; Registers used:
-   725 ;;		cstack
+   725 ;;		wreg
    726 ;; Tracked objects:
    727 ;;		On entry : 0/0
    728 ;;		On exit  : 0/0
    729 ;;		Unchanged: 0/0
    730 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
       +1  BANK12  BANK13  BANK14  BANK15
-   731 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+   731 ;;      Params:         1       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
    732 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
    733 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   734 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+   734 ;;      Totals:         1       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   735 ;;Total ram usage:        0 bytes
+   735 ;;Total ram usage:        1 bytes
    736 ;; Hardware stack levels used: 1
-   737 ;; Hardware stack levels required when called: 1
-   738 ;; This function calls:
-   739 ;;		_GPIO_Init
-   740 ;; This function is called by:
-   741 ;;		_main
-   742 ;; This function uses a non-reentrant model
-   743 ;;
-   744                           
-   745                           	psect	text8
-   746   0011CE                     __ptext8:
-   747                           	callstack 0
-   748   0011CE                     _LEDM_Init:
-   749                           	callstack 29
-   750   0011CE                     
-   751                           ;GPIO/LEDM.c: 6:     GPIO_Init();
-   752   0011CE  ECEA  F008         	call	_GPIO_Init	;wreg free
-   753   0011D2  0012               	return		;funcret
-   754   0011D4                     __end_of_LEDM_Init:
-   755                           	callstack 0
-   756                           
-   757 ;; *************** function _GPIO_Init *****************
-   758 ;; Defined at:
-   759 ;;		line 3 in file "GPIO/GPIO.c"
-   760 ;; Parameters:    Size  Location     Type
-   761 ;;		None
-   762 ;; Auto vars:     Size  Location     Type
-   763 ;;		None
-   764 ;; Return value:  Size  Location     Type
-   765 ;;                  1    wreg      void 
-   766 ;; Registers used:
-   767 ;;		None
-   768 ;; Tracked objects:
-   769 ;;		On entry : 0/0
-   770 ;;		On exit  : 0/0
-   771 ;;		Unchanged: 0/0
-   772 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+   737 ;; This function calls:
+   738 ;;		Nothing
+   739 ;; This function is called by:
+   740 ;;		_LEDM_Manage
+   741 ;; This function uses a non-reentrant model
+   742 ;;
+   743                           
+   744                           	psect	text8
+   745   0011C6                     __ptext8:
+   746                           	callstack 0
+   747   0011C6                     _GPIO_Write:
+   748                           	callstack 29
+   749   0011C6                     
+   750                           ;GPIO/GPIO.c: 11:    LATDbits.LATD5 = PinData;
+   751   0011C6  B012               	btfsc	GPIO_Write@PinData^0,0,c
+   752   0011C8  D002               	bra	u115
+   753   0011CA  9A8C               	bcf	140,5,c	;volatile
+   754   0011CC  D001               	bra	u116
+   755   0011CE                     u115:
+   756   0011CE  8A8C               	bsf	140,5,c	;volatile
+   757   0011D0                     u116:
+   758   0011D0  0012               	return		;funcret
+   759   0011D2                     __end_of_GPIO_Write:
+   760                           	callstack 0
+   761                           
+   762 ;; *************** function _LEDM_Init *****************
+   763 ;; Defined at:
+   764 ;;		line 5 in file "GPIO/LEDM.c"
+   765 ;; Parameters:    Size  Location     Type
+   766 ;;		None
+   767 ;; Auto vars:     Size  Location     Type
+   768 ;;		None
+   769 ;; Return value:  Size  Location     Type
+   770 ;;                  1    wreg      void 
+   771 ;; Registers used:
+   772 ;;		cstack
+   773 ;; Tracked objects:
+   774 ;;		On entry : 0/0
+   775 ;;		On exit  : 0/0
+   776 ;;		Unchanged: 0/0
+   777 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
       +1  BANK12  BANK13  BANK14  BANK15
-   773 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+   778 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   774 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+   779 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   775 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+   780 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   776 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+   781 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
       +0       0       0       0       0
-   777 ;;Total ram usage:        0 bytes
-   778 ;; Hardware stack levels used: 1
-   779 ;; This function calls:
-   780 ;;		Nothing
-   781 ;; This function is called by:
-   782 ;;		_LEDM_Init
-   783 ;; This function uses a non-reentrant model
-   784 ;;
-   785                           
-   786                           	psect	text9
-   787   0011D4                     __ptext9:
-   788                           	callstack 0
-   789   0011D4                     _GPIO_Init:
-   790                           	callstack 29
-   791   0011D4                     
-   792                           ;GPIO/GPIO.c: 4:         TRISDbits.TRISD5 = 0;
-   793   0011D4  9A95               	bcf	149,5,c	;volatile
-   794                           
-   795                           ;GPIO/GPIO.c: 5:         LATDbits.LATD5 = 0;
-   796   0011D6  9A8C               	bcf	140,5,c	;volatile
-   797   0011D8  0012               	return		;funcret
-   798   0011DA                     __end_of_GPIO_Init:
-   799                           	callstack 0
-   800                           
-   801                           	psect	smallconst
-   802   001000                     __psmallconst:
-   803                           	callstack 0
-   804   001000  00                 	db	0
-   805   001001  00                 	db	0	; dummy byte at the end
-   806   000000                     
-   807                           	psect	rparam
-   808   000000                     
-   809                           	psect	config
-   810                           
-   811                           ; Padding undefined space
-   812   300000                     	org	3145728
-   813   300000  FF                 	db	255
-   814                           
-   815                           ;Config register CONFIG1H @ 0x300001
-   816                           ;	Oscillator Selection bits
-   817                           ;	FOSC = HS, HS oscillator
-   818                           ;	Fail-Safe Clock Monitor Enable bit
-   819                           ;	FCMEN = 0x0, unprogrammed default
-   820                           ;	Internal/External Oscillator Switchover bit
-   821                           ;	IESO = 0x0, unprogrammed default
-   822   300001                     	org	3145729
-   823   300001  02                 	db	2
-   824                           
-   825                           ;Config register CONFIG2L @ 0x300002
-   826                           ;	unspecified, using default values
-   827                           ;	Power-up Timer Enable bit
-   828                           ;	PWRTEN = 0x1, unprogrammed default
-   829                           ;	Brown-out Reset Enable bits
-   830                           ;	BOREN = 0x3, unprogrammed default
-   831                           ;	Brown Out Reset Voltage bits
-   832                           ;	BORV = 0x3, unprogrammed default
-   833   300002                     	org	3145730
-   834   300002  1F                 	db	31
-   835                           
-   836                           ;Config register CONFIG2H @ 0x300003
-   837                           ;	Watchdog Timer Enable bit
-   838                           ;	WDTEN = 0x1, unprogrammed default
-   839                           ;	Watchdog Timer Postscale Select bits
-   840                           ;	WDTPS = 128, 1:128
-   841   300003                     	org	3145731
-   842   300003  0F                 	db	15
-   843                           tosu	equ	0xFFF
-   844                           tosh	equ	0xFFE
-   845                           tosl	equ	0xFFD
-   846                           stkptr	equ	0xFFC
-   847                           pclatu	equ	0xFFB
-   848                           pclath	equ	0xFFA
-   849                           pcl	equ	0xFF9
-   850                           tblptru	equ	0xFF8
-   851                           tblptrh	equ	0xFF7
-   852                           tblptrl	equ	0xFF6
-   853                           tablat	equ	0xFF5
-   854                           prodh	equ	0xFF4
-   855                           prodl	equ	0xFF3
-   856                           indf0	equ	0xFEF
-   857                           postinc0	equ	0xFEE
-   858                           postdec0	equ	0xFED
-   859                           preinc0	equ	0xFEC
-   860                           plusw0	equ	0xFEB
-   861                           fsr0h	equ	0xFEA
-   862                           fsr0l	equ	0xFE9
-   863                           wreg	equ	0xFE8
-   864                           indf1	equ	0xFE7
-   865                           postinc1	equ	0xFE6
-   866                           postdec1	equ	0xFE5
-   867                           preinc1	equ	0xFE4
-   868                           plusw1	equ	0xFE3
-   869                           fsr1h	equ	0xFE2
-   870                           fsr1l	equ	0xFE1
-   871                           bsr	equ	0xFE0
-   872                           indf2	equ	0xFDF
-   873                           postinc2	equ	0xFDE
-   874                           postdec2	equ	0xFDD
-   875                           preinc2	equ	0xFDC
-   876                           plusw2	equ	0xFDB
-   877                           fsr2h	equ	0xFDA
-   878                           fsr2l	equ	0xFD9
-   879                           status	equ	0xFD8
+   782 ;;Total ram usage:        0 bytes
+   783 ;; Hardware stack levels used: 1
+   784 ;; Hardware stack levels required when called: 1
+   785 ;; This function calls:
+   786 ;;		_GPIO_Init
+   787 ;; This function is called by:
+   788 ;;		_main
+   789 ;; This function uses a non-reentrant model
+   790 ;;
+   791                           
+   792                           	psect	text9
+   793   0011D8                     __ptext9:
+   794                           	callstack 0
+   795   0011D8                     _LEDM_Init:
+   796                           	callstack 29
+   797   0011D8                     
+   798                           ;GPIO/LEDM.c: 6:     GPIO_Init();
+   799   0011D8  ECEF  F008         	call	_GPIO_Init	;wreg free
+   800   0011DC  0012               	return		;funcret
+   801   0011DE                     __end_of_LEDM_Init:
+   802                           	callstack 0
+   803                           
+   804 ;; *************** function _GPIO_Init *****************
+   805 ;; Defined at:
+   806 ;;		line 3 in file "GPIO/GPIO.c"
+   807 ;; Parameters:    Size  Location     Type
+   808 ;;		None
+   809 ;; Auto vars:     Size  Location     Type
+   810 ;;		None
+   811 ;; Return value:  Size  Location     Type
+   812 ;;                  1    wreg      void 
+   813 ;; Registers used:
+   814 ;;		None
+   815 ;; Tracked objects:
+   816 ;;		On entry : 0/0
+   817 ;;		On exit  : 0/0
+   818 ;;		Unchanged: 0/0
+   819 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK1
+      +1  BANK12  BANK13  BANK14  BANK15
+   820 ;;      Params:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   821 ;;      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   822 ;;      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   823 ;;      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       
+      +0       0       0       0       0
+   824 ;;Total ram usage:        0 bytes
+   825 ;; Hardware stack levels used: 1
+   826 ;; This function calls:
+   827 ;;		Nothing
+   828 ;; This function is called by:
+   829 ;;		_LEDM_Init
+   830 ;; This function uses a non-reentrant model
+   831 ;;
+   832                           
+   833                           	psect	text10
+   834   0011DE                     __ptext10:
+   835                           	callstack 0
+   836   0011DE                     _GPIO_Init:
+   837                           	callstack 29
+   838   0011DE                     
+   839                           ;GPIO/GPIO.c: 4:         TRISDbits.TRISD5 = 0;
+   840   0011DE  9A95               	bcf	149,5,c	;volatile
+   841                           
+   842                           ;GPIO/GPIO.c: 5:         LATDbits.LATD5 = 0;
+   843   0011E0  9A8C               	bcf	140,5,c	;volatile
+   844   0011E2  0012               	return		;funcret
+   845   0011E4                     __end_of_GPIO_Init:
+   846                           	callstack 0
+   847                           
+   848                           	psect	smallconst
+   849   001000                     __psmallconst:
+   850                           	callstack 0
+   851   001000  00                 	db	0
+   852   001001  00                 	db	0	; dummy byte at the end
+   853   000000                     
+   854                           	psect	rparam
+   855   000000                     
+   856                           	psect	config
+   857                           
+   858                           ; Padding undefined space
+   859   300000                     	org	3145728
+   860   300000  FF                 	db	255
+   861                           
+   862                           ;Config register CONFIG1H @ 0x300001
+   863                           ;	Oscillator Selection bits
+   864                           ;	FOSC = HS, HS oscillator
+   865                           ;	Fail-Safe Clock Monitor Enable bit
+   866                           ;	FCMEN = 0x0, unprogrammed default
+   867                           ;	Internal/External Oscillator Switchover bit
+   868                           ;	IESO = 0x0, unprogrammed default
+   869   300001                     	org	3145729
+   870   300001  02                 	db	2
+   871                           
+   872                           ;Config register CONFIG2L @ 0x300002
+   873                           ;	unspecified, using default values
+   874                           ;	Power-up Timer Enable bit
+   875                           ;	PWRTEN = 0x1, unprogrammed default
+   876                           ;	Brown-out Reset Enable bits
+   877                           ;	BOREN = 0x3, unprogrammed default
+   878                           ;	Brown Out Reset Voltage bits
+   879                           ;	BORV = 0x3, unprogrammed default
+   880   300002                     	org	3145730
+   881   300002  1F                 	db	31
+   882                           
+   883                           ;Config register CONFIG2H @ 0x300003
+   884                           ;	Watchdog Timer Enable bit
+   885                           ;	WDTEN = 0x1, unprogrammed default
+   886                           ;	Watchdog Timer Postscale Select bits
+   887                           ;	WDTPS = 128, 1:128
+   888   300003                     	org	3145731
+   889   300003  0F                 	db	15
+   890                           tosu	equ	0xFFF
+   891                           tosh	equ	0xFFE
+   892                           tosl	equ	0xFFD
+   893                           stkptr	equ	0xFFC
+   894                           pclatu	equ	0xFFB
+   895                           pclath	equ	0xFFA
+   896                           pcl	equ	0xFF9
+   897                           tblptru	equ	0xFF8
+   898                           tblptrh	equ	0xFF7
+   899                           tblptrl	equ	0xFF6
+   900                           tablat	equ	0xFF5
+   901                           prodh	equ	0xFF4
+   902                           prodl	equ	0xFF3
+   903                           indf0	equ	0xFEF
+   904                           postinc0	equ	0xFEE
+   905                           postdec0	equ	0xFED
+   906                           preinc0	equ	0xFEC
+   907                           plusw0	equ	0xFEB
+   908                           fsr0h	equ	0xFEA
+   909                           fsr0l	equ	0xFE9
+   910                           wreg	equ	0xFE8
+   911                           indf1	equ	0xFE7
+   912                           postinc1	equ	0xFE6
+   913                           postdec1	equ	0xFE5
+   914                           preinc1	equ	0xFE4
+   915                           plusw1	equ	0xFE3
+   916                           fsr1h	equ	0xFE2
+   917                           fsr1l	equ	0xFE1
+   918                           bsr	equ	0xFE0
+   919                           indf2	equ	0xFDF
+   920                           postinc2	equ	0xFDE
+   921                           postdec2	equ	0xFDD
+   922                           preinc2	equ	0xFDC
+   923                           plusw2	equ	0xFDB
+   924                           fsr2h	equ	0xFDA
+   925                           fsr2l	equ	0xFD9
+   926                           status	equ	0xFD8
 
 Data Sizes:
     Strings     0
@@ -1069,6 +1121,9 @@ Call Graph Tables:
  ---------------------------------------------------------------------------------
  (1) _LEDM_Manage                                          0     0      0      98
                          _GPIO_Write
+           _WDGM_AlivenessIndication
+ ---------------------------------------------------------------------------------
+ (2) _WDGM_AlivenessIndication                             0     0      0       0
  ---------------------------------------------------------------------------------
  (2) _GPIO_Write                                           2     1      1      98
                                               0 COMRAM     1     0      1
@@ -1088,6 +1143,7 @@ Call Graph Tables:
      _GPIO_Init
    _LEDM_Manage
      _GPIO_Write
+     _WDGM_AlivenessIndication
    _WDGDrv_Init
    _WDGDrv_IsrNotification
      _WDGM_PovideSuppervisionStatus
@@ -1147,83 +1203,87 @@ CODE                 0      0       0       0        0.0%
 
 
 Microchip Technology PIC18 Macro Assembler V2.46 build 20240104201356 
-Symbol Table                                                                                   Fri Jun 14 21:40:55 2024
+Symbol Table                                                                                   Mon Jun 17 21:30:45 2024
 
-                    _WDGM_MainFunction 1002                                     l33 11D8  
-                                   l51 1164                                     l36 11CC  
-                                   l47 11D2                                     l64 11E0  
-                                   l82 11AE                                     l92 11DC  
-                                   l69 1198                                     l88 109A  
-                                   l89 10A2                     ?_WDGM_MainFunction 0012  
-                          ?_GPIO_Write 0012                                    l841 11C2  
-                                  l771 11D4                                    l851 1152  
-                                  l843 11DA                                    l853 115C  
-                                  l781 11DE                                    l861 102E  
-                                  l847 1110                                    l783 119A  
-                                  l871 1096                                    l863 104E  
-                                  l855 1002                                    l849 1138  
-                                  l873 1166                                    l865 1056  
-                                  l857 1006                                    l881 10A4  
-                                  l779 11CE                                    l875 116A  
-                                  l867 1072                                    l859 1026  
-                                  l891 10E6                                    l883 10A8  
-                                  l877 117E                                    l869 108E  
-                                  l893 10EA                                    l885 10C2  
-                                  l879 1196                                    l895 10EE  
-                                  l887 10DE                                    l897 10F2  
-                                  l889 10E2                                    l899 10F6  
-                                  u120 1138                                    u200 1196  
-                                  u121 1134                                    u201 1192  
-                                  u130 114C                                    u115 11CA  
-                                  u131 1146                                    u116 11CC  
-                                  u140 114E                                    u150 1026  
-                                  u151 1022                                    u160 104E  
-                                  u161 104A                                    u217 10B2  
-                                  u170 1072                                    u171 106E  
-                                  u227 10CE                                    u180 108E  
-                                  u181 108A                                    u237 10FC  
-                                  u190 117E                                    u191 117A  
-                                  _isr 0009                    ??_WDGM_MainFunction 0012  
-                                  wreg 0FE8                                   _main 10A4  
-                                 start 0000              __end_of_WDGM_MainFunction 10A4  
-                         ___param_bank 0000                                  ?_main 0012  
-                                _Calls 000B                          _lastCheckTime 0003  
-                                status 0FD8                        __initialization 11B0  
-                         __end_of_main 1110  __end_of_WDGM_PovideSuppervisionStatus 11DE  
-        _WDGM_PovideSuppervisionStatus 11DA                                 ??_main 0013  
-                    __end_of_LEDM_Init 11D4                          __activetblptr 0000  
-                    __end_of_GPIO_Init 11DA                       _wgdmMainFuncTurn 0001  
-             ??_WDGDrv_IsrNotification 0012                      __end_of_WDGM_Init 11B0  
-                         ?_WDGDrv_Init 0012                                 clear_0 11B6  
+                    _WDGM_MainFunction 1002                                     l33 11E2  
+                                   l36 11D0                                     l53 1168  
+                                   l71 119C                                     l49 11DC  
+                                   l66 11EA                                     l90 109A  
+                                   l91 10A2                                     l84 11B2  
+                                   l94 11E6                                     l97 11D6  
+                   ?_WDGM_MainFunction 0012                            ?_GPIO_Write 0012  
+                                  l901 10EE                                    l903 10F2  
+                                  l905 10F6                                    l851 1110  
+                                  l773 11DE                                    l845 11C6  
+                                  l853 1138                                    l861 1002  
+                                  l783 11D8                                    l855 1152  
+                                  l847 11E4                                    l871 1056  
+                                  l863 1006                                    l777 11D2  
+                                  l857 115C                                    l785 11E8  
+                                  l881 116E                                    l873 1072  
+                                  l865 1026                                    l859 1164  
+                                  l883 1182                                    l787 119E  
+                                  l875 108E                                    l867 102E  
+                                  l891 10C2                                    l885 119A  
+                                  l877 1096                                    l869 104E  
+                                  l893 10DE                                    l879 116A  
+                                  l895 10E2                                    l887 10A4  
+                                  l897 10E6                                    l889 10A8  
+                                  l899 10EA                                    u120 1138  
+                                  u200 119A                                    u121 1134  
+                                  u201 1196                                    u130 114C  
+                                  u115 11CE                                    u131 1146  
+                                  u116 11D0                                    u140 114E  
+                                  u150 1026                                    u151 1022  
+                                  u160 104E                                    u161 104A  
+                                  u217 10B2                                    u170 1072  
+                                  u171 106E                                    u227 10CE  
+                                  u180 108E                                    u181 108A  
+                                  u237 10FC                                    u190 1182  
+                                  u191 117E                                    _isr 0009  
+                  ??_WDGM_MainFunction 0012                                    wreg 0FE8  
+                                 _main 10A4                                   start 0000  
+            __end_of_WDGM_MainFunction 10A4                           ___param_bank 0000  
+                                ?_main 0012                                  _Calls 000B  
+                        _lastCheckTime 0003             ??_WDGM_AlivenessIndication 0012  
+                                status 0FD8                        __initialization 11B4  
+                         __end_of_main 1110  __end_of_WDGM_PovideSuppervisionStatus 11E8  
+        _WDGM_PovideSuppervisionStatus 11E4                                 ??_main 0013  
+                    __end_of_LEDM_Init 11DE                          __activetblptr 0000  
+                    __end_of_GPIO_Init 11E4                       _wgdmMainFuncTurn 0001  
+             ??_WDGDrv_IsrNotification 0012                      __end_of_WDGM_Init 11B4  
+                         ?_WDGDrv_Init 0012                                 clear_0 11BA  
                                isa$std 0001                           __mediumconst 0000  
-                           __accesstop 0060                __end_of__initialization 11BC  
+                           __accesstop 0060                __end_of__initialization 11C0  
                         ___rparam_used 0001                         __pcstackCOMRAM 0012  
                          ??_GPIO_Write 0013         ?_WDGM_PovideSuppervisionStatus 0012  
-                   __end_of_GPIO_Write 11CE                             _ledCounter 000D  
+                   __end_of_GPIO_Write 11D2                             _ledCounter 000D  
                               __Hparam 0000                                __Lparam 0000  
-                         __psmallconst 1000                                __pcinit 11B0  
+                         __psmallconst 1000                                __pcinit 11B4  
                               __ramtop 1000                                __ptext0 10A4  
-                              __ptext1 1002                                __ptext2 119A  
-                              __ptext3 1166                                __ptext4 11DA  
-                              __ptext5 11DE                                __ptext6 1110  
-                              __ptext7 11C2                                __ptext8 11CE  
-                              __ptext9 11D4                 _WDGDrv_IsrNotification 1166  
-                            _LEDM_Init 11CE                              _GPIO_Init 11D4  
-                 end_of_initialization 11BC                                postinc0 0FEE  
-                           _wdgmStatus 0011                              _WDGM_Init 119A  
-                            _TRISDbits 0F95                             ?_LEDM_Init 0012  
-                           ?_GPIO_Init 0012                          ??_LEDM_Manage 0013  
-                           ?_WDGM_Init 0012                    start_initialization 11B0  
-                    GPIO_Write@PinData 0012        ??_WDGM_PovideSuppervisionStatus 0012  
-                  __end_of_LEDM_Manage 1166                            __pbssCOMRAM 0001  
-                          ??_LEDM_Init 0012                            ??_GPIO_Init 0012  
-              ?_WDGDrv_IsrNotification 0012                            ??_WDGM_Init 0012  
-                          __smallconst 1000                               _LATDbits 0F8C  
+                              __ptext1 1002                                __ptext2 119E  
+                              __ptext3 116A                                __ptext4 11E4  
+                              __ptext5 11E8                                __ptext6 1110  
+                              __ptext7 11D2                                __ptext8 11C6  
+                              __ptext9 11D8                 _WDGDrv_IsrNotification 116A  
+                            _LEDM_Init 11D8                              _GPIO_Init 11DE  
+                 end_of_initialization 11C0              ?_WDGM_AlivenessIndication 0012  
+                              postinc0 0FEE                             _wdgmStatus 0011  
+                            _WDGM_Init 119E                              _TRISDbits 0F95  
+                           ?_LEDM_Init 0012                             ?_GPIO_Init 0012  
+                        ??_LEDM_Manage 0013                             ?_WDGM_Init 0012  
+                  start_initialization 11B4                      GPIO_Write@PinData 0012  
+      ??_WDGM_PovideSuppervisionStatus 0012                    __end_of_LEDM_Manage 116A  
+                          __pbssCOMRAM 0001                            ??_LEDM_Init 0012  
+                          ??_GPIO_Init 0012                ?_WDGDrv_IsrNotification 0012  
+                          ??_WDGM_Init 0012                            __smallconst 1000  
+     __end_of_WDGM_AlivenessIndication 11D8                               _LATDbits 0F8C  
                           _LEDM_Manage 1110                          ??_WDGDrv_Init 0012  
-       __end_of_WDGDrv_IsrNotification 119A                          _notifications 0007  
+       __end_of_WDGDrv_IsrNotification 119E                          _notifications 0007  
                              __Hrparam 0000                               __Lrparam 0000  
-                  __end_of_WDGDrv_Init 11E2                               _ledstate 000F  
-                             isa$xinst 0000                             _GPIO_Write 11C2  
-                      GPIO_Write@PinId 0012                            _WDGDrv_Init 11DE  
+                  __end_of_WDGDrv_Init 11EC                               __ptext10 11DE  
+                             _ledstate 000F               _WDGM_AlivenessIndication 11D2  
+                             isa$xinst 0000                             _GPIO_Write 11C6  
+                      GPIO_Write@PinId 0012                            _WDGDrv_Init 11E8  
                            _WDTCONbits 0FD1                          _mainFuncCalls 0005  
                          ?_LEDM_Manage 0012  

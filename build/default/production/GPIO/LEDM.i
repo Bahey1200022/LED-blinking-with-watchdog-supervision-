@@ -4992,7 +4992,7 @@ void LEDM_Manage(void){
         ledCounter=0;
     }
 
-
+   WDGM_AlivenessIndication();
 
 
 }

@@ -3,11 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/moham/MPLABXProjects/watchdog.X/GPIO/WDGM.c</file>
-            <file>file:/C:/Users/moham/MPLABXProjects/watchdog.X/GPIO/WDGDRV.c</file>
-            <file>file:/C:/Users/moham/MPLABXProjects/watchdog.X/GPIO/LEDM.c</file>
+            <file>file:/C:/Users/moham/MPLABXProjects/watchdog.X/GPIO/GPIO.c</file>
             <file>file:/C:/Users/moham/MPLABXProjects/watchdog.X/GPIO/main.c</file>
-            <file>file:/C:/Users/moham/MPLABXProjects/watchdog.X/GPIO/WDGM.h</file>
         </group>
     </open-files>
 </project-private>

@@ -57,6 +57,8 @@ NOK 1
 [v _WDGM_MainFunction WDGM_MainFunction `(v  1 e 1 0 ]
 "41
 [v _WDGM_PovideSuppervisionStatus WDGM_PovideSuppervisionStatus `(E2735  1 e 1 0 ]
+"46
+[v _WDGM_AlivenessIndication WDGM_AlivenessIndication `(v  1 e 1 0 ]
 [s S64 . 1 `uc 1 LATD0 1 0 :1:0 
 `uc 1 LATD1 1 0 :1:1 
 `uc 1 LATD2 1 0 :1:2 
@@ -99,13 +101,13 @@ NOK 1
 ]
 [u S42 . 1 `S24 1 . 1 0 `S33 1 . 1 0 ]
 [v _TRISDbits TRISDbits `VES42  1 e 1 @3989 ]
-[s S211 . 1 `uc 1 SWDTEN 1 0 :1:0 
+[s S215 . 1 `uc 1 SWDTEN 1 0 :1:0 
 ]
 "6170
-[s S213 . 1 `uc 1 SWDTE 1 0 :1:0 
+[s S217 . 1 `uc 1 SWDTE 1 0 :1:0 
 ]
-[u S215 . 1 `S211 1 . 1 0 `S213 1 . 1 0 ]
-[v _WDTCONbits WDTCONbits `VES215  1 e 1 @4049 ]
+[u S219 . 1 `S215 1 . 1 0 `S217 1 . 1 0 ]
+[v _WDTCONbits WDTCONbits `VES219  1 e 1 @4049 ]
 "3 C:\Users\moham\MPLABXProjects\watchdog.X\GPIO/LEDM.c
 [v _ledstate ledstate `VEi  1 s 2 ledstate ]
 "4
@@ -158,6 +160,11 @@ NOK 1
 [v _LEDM_Manage LEDM_Manage `(v  1 e 1 0 ]
 {
 "23
+} 0
+"46 C:\Users\moham\MPLABXProjects\watchdog.X\GPIO/WDGM.c
+[v _WDGM_AlivenessIndication WDGM_AlivenessIndication `(v  1 e 1 0 ]
+{
+"50
 } 0
 "9 C:\Users\moham\MPLABXProjects\watchdog.X\GPIO/GPIO.c
 [v _GPIO_Write GPIO_Write `(v  1 e 1 0 ]
